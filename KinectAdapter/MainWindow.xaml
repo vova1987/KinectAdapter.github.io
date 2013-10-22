@@ -1,0 +1,36 @@
+﻿<Window x:Class="KinectAdapter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:k="http://schemas.microsoft.com/kinect/2013"
+        xmlns:kinectChooserEx="clr-namespace:KinectAdapter"
+        Title="MainWindow" Height="604" Width="925">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="137*"></RowDefinition>
+            <RowDefinition Height="150*"></RowDefinition>
+            <RowDefinition Height="124*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+            <StackPanel Grid.Row="0" Grid.Column="0">
+                <kinectChooserEx:KinectChooserEx x:Name="kinectChooserEx" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <k:KinectUserViewer k:KinectRegion.KinectRegion="{Binding ElementName=region}" Height="147" Width="448" />
+                <k:KinectRegion x:Name="region" HorizontalAlignment="Left" Height="100" Margin="10,76.5,0,0" VerticalAlignment="Top" Width="100" KinectSensor="{Binding KinectSensor, ElementName=kinectChooserEx}"/>
+            </StackPanel>
+            <Viewbox Grid.RowSpan="3" Grid.Row="0" Grid.Column="1">
+                <TextBlock Name="tb" FontFamily="Lucida Console" Text="Initializing..."/>
+            </Viewbox>
+        <Canvas Width="200" Height="150" Name="skeletonCanvas" Background="Black" ClipToBounds="True" Margin="0,0,0,0" Grid.Row="1" Grid.Column="0"/>
+        <StackPanel Grid.Row="2" Grid.Column="0">
+            <TextBox Height="60" Name="tb2" Width="180" />
+            <TextBox Height="Auto" Name="textBox1" Width="Auto" FontSize="30" Text="{Binding Gesture, Mode=OneWay}"/>
+
+        </StackPanel>
+                
+                
+            
+    </Grid>
+</Window>
