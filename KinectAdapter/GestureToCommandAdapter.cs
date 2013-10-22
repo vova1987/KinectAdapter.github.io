@@ -43,7 +43,7 @@ namespace KinectAdapter
         private void OnGestureRecognized(object sender, GestureArgs e)
         {
             //Send all commands associated with the recognized gesture
-            if (_gestureToCommandMap[e.GestureId] != null)
+            if (_gestureToCommandMap.ContainsKey(e.GestureId))
             {
                 foreach (var command in _gestureToCommandMap[e.GestureId])
                 {
