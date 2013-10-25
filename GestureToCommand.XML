@@ -32,19 +32,19 @@
     <Command Type="KbCommand">PageUp</Command>
   </GestureCommandPair>
   <GestureCommandPair>
-    <Gesture Type="Physical">MinorLeftSwipe</Gesture>
+    <Gesture Type="Physical">WaveLeft</Gesture>
     <Command Type="KbCommand">Left</Command>
   </GestureCommandPair>
   <GestureCommandPair>
-    <Gesture Type="Physical">MinorLeftSwipe</Gesture>
+    <Gesture Type="Physical">WaveLeft</Gesture>
     <Command Type="KbCommand">StepBack</Command>
   </GestureCommandPair>
   <GestureCommandPair>
-    <Gesture Type="Physical">MinorRightSwipe</Gesture>
+    <Gesture Type="Physical">WaveRight</Gesture>
     <Command Type="KbCommand">Right</Command>
   </GestureCommandPair>
   <GestureCommandPair>
-    <Gesture Type="Physical">MinorRightSwipe</Gesture>
+    <Gesture Type="Physical">WaveRight</Gesture>
     <Command Type="KbCommand">StepForward</Command>
   </GestureCommandPair>
   <GestureCommandPair>

@@ -28,19 +28,19 @@
     <Command Type="ActionCommand">PageUp</Command>
   </GestureCommandPair>
   <GestureCommandPair>
-    <Gesture Type="Physical">MinorLeftSwipe</Gesture>
+    <Gesture Type="Physical">WaveLeft</Gesture>
     <Command Type="ActionCommand">Left</Command>
   </GestureCommandPair>
   <GestureCommandPair>
-    <Gesture Type="Physical">MinorLeftSwipe</Gesture>
+    <Gesture Type="Physical">WaveLeft</Gesture>
     <Command Type="ActionCommand">StepBack</Command>
   </GestureCommandPair>
   <GestureCommandPair>
-    <Gesture Type="Physical">MinorRightSwipe</Gesture>
+    <Gesture Type="Physical">WaveRight</Gesture>
     <Command Type="ActionCommand">Right</Command>
   </GestureCommandPair>
   <GestureCommandPair>
-    <Gesture Type="Physical">MinorRightSwipe</Gesture>
+    <Gesture Type="Physical">WaveRight</Gesture>
     <Command Type="ActionCommand">StepForward</Command>
   </GestureCommandPair>
   <GestureCommandPair>
