@@ -132,7 +132,7 @@ namespace KinectAdapter.PhysicalRecognition
 
         public bool IsGestureSupported(KinectGesture gesture)
         {
-            return gesture.GestureType == GestureType.Physical && gestureController.Gestures.Contains(gesture.GestureName);
+            return gesture.GestureType == GestureType.Physical && gestureController.Gestures.Contains(gesture.GestureId);
         }
 
         public GestureType GestureType { get { return Models.GestureType.Physical; } }

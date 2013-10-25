@@ -79,7 +79,6 @@
     <Compile Include="Fizbin\Gestures\Segments\SwipeLeft.cs" />
     <Compile Include="Fizbin\Gestures\Segments\SwipeRight.cs" />
     <Compile Include="PhysicalRecognition\InteractiveGestureDetector.cs" />
-    <Compile Include="Models\KinectGesture.cs" />
     <Compile Include="VoiceRecognition\KinectVoiceGestureDetector.cs" />
     <Compile Include="XBMC\XbmcCommandSender.cs" />
     <Page Include="KinectChooserEx.xaml">

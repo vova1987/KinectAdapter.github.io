@@ -3,10 +3,6 @@
     Supported Gesture Types: 
     * Physical 
     * Voice
-    Supported Command Types:
-    * ActionCommand,
-    * KbCommand,
-    * MouseCommand
     For a full list of available XBMC Commands, see : http://wiki.xbmc.org/?title=Action_IDs
     Steps to Add a new Gesture:
     1. Implement the Gesture Segments in The Fizbin.Gestures.Segments namespace of this project.
@@ -17,80 +13,88 @@
 <ArrayOfGestureCommandPair xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <GestureCommandPair>
     <Gesture Type="Physical">BothSwipeDown</Gesture>
-    <Command Type="KbCommand">PageDown</Command>
+    <Command Type="ActionCommand">PageDown</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">BothSwipeLeft</Gesture>
-    <Command Type="ActionCommand">prev_track</Command>
+    <Command Type="ActionCommand">SkipPrev</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">BothSwipeRight</Gesture>
-    <Command Type="ActionCommand">next_track</Command>
+    <Command Type="ActionCommand">SkipNext</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">BothSwipeUp</Gesture>
-    <Command Type="KbCommand">PageUp</Command>
+    <Command Type="ActionCommand">PageUp</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">MinorLeftSwipe</Gesture>
-    <Command Type="KbCommand">Left</Command>
+    <Command Type="ActionCommand">Left</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">MinorLeftSwipe</Gesture>
-    <Command Type="KbCommand">StepBack</Command>
+    <Command Type="ActionCommand">StepBack</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">MinorRightSwipe</Gesture>
-    <Command Type="KbCommand">Right</Command>
+    <Command Type="ActionCommand">Right</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">MinorRightSwipe</Gesture>
-    <Command Type="KbCommand">StepForward</Command>
+    <Command Type="ActionCommand">StepForward</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">MinorSwipeDown</Gesture>
-    <Command Type="KbCommand">Down</Command>
+    <Command Type="ActionCommand">Down</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">MinorSwipeUp</Gesture>
-    <Command Type="KbCommand">Up</Command>
+    <Command Type="ActionCommand">Up</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">PushLeftForward</Gesture>
-    <Command Type="KbCommand">esc</Command>
+    <Command Type="ActionCommand">Back</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">PushRightForward</Gesture>
-    <Command Type="KbCommand">enter</Command>
+    <Command Type="ActionCommand">Select</Command>
+  </GestureCommandPair>
+  <GestureCommandPair>
+    <Gesture Type="Physical">PushRightForward</Gesture>
+    <Command Type="ActionCommand">Enter</Command>
+  </GestureCommandPair>
+  <GestureCommandPair>
+    <Gesture Type="Physical">PushRightForward</Gesture>
+    <Command Type="ActionCommand">PlayPause</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">SwipeLeft</Gesture>
-    <Command Type="KbCommand">r</Command>
+    <Command Type="ActionCommand">Rewind</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">SwipeRight</Gesture>
-    <Command Type="KbCommand">f</Command>
+    <Command Type="ActionCommand">FastForward</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">GripReleaseRightHand</Gesture>
-    <Command Type="KbCommand">volume_up</Command>
+    <Command Type="ActionCommand">volumeup</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">GripReleaseLeftHand</Gesture>
-    <Command Type="KbCommand">volume_down</Command>
+    <Command Type="ActionCommand">volumedown</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">GripReleaseBothHands</Gesture>
-    <Command Type="KbCommand">volume_mute</Command>
+    <Command Type="ActionCommand">mute</Command>
   </GestureCommandPair>
   <!-- Voice Commands -->
   <GestureCommandPair>
     <Gesture Type="Voice">Play</Gesture>
-    <Command Type="KbCommand">p</Command>
+    <Command Type="ActionCommand">play</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Voice">Stop</Gesture>
-    <Command Type="KbCommand">stop</Command>
+    <Command Type="ActionCommand">Pause</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Voice">Pictures</Gesture>

@@ -48,7 +48,6 @@ namespace KinectAdapter
             InitializeComponent();
             Loaded += OnLoaded;
             DataContext = this;
-
             // add timer for clearing last detected gesture
             _clearTimer = new Timer(2000);
             _clearTimer.Elapsed += new ElapsedEventHandler(clearTimer_Elapsed);
@@ -58,7 +57,7 @@ namespace KinectAdapter
         {
             if (DesignerProperties.GetIsInDesignMode(this))
                 return;
-
+            
             // this is just a test, so it only works with one Kinect, and quits if that is not available.
             _sensor = KinectSensor.KinectSensors.FirstOrDefault();
             if (_sensor == null)

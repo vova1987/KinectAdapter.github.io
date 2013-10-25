@@ -19,7 +19,7 @@ namespace KinectAdapter
         #region members
         ICommandSender _commandSender;
         IGestureDetector[] _gestureDetectors;
-        Dictionary<string, IList<string>> _gestureToCommandMap;
+        Dictionary<string, IList<XbmcCommand>> _gestureToCommandMap;
         #endregion
 
         //For debugging
@@ -29,7 +29,7 @@ namespace KinectAdapter
         {
             _commandSender = sender;
             _gestureDetectors = detectors;
-            _gestureToCommandMap = new Dictionary<string, IList<string>>();
+            _gestureToCommandMap = new Dictionary<string, IList<XbmcCommand>>();
             foreach(var detector in _gestureDetectors)
                 detector.GestureDetected += OnGestureRecognized;
             LoadGestures(GestureFilePath);
@@ -76,11 +76,11 @@ namespace KinectAdapter
                     
                     if (Supportingdetectors == null || Supportingdetectors.Count()==0)
                     {
-                        throw new ApplicationException(string.Format("Gesture {0} of type {1} is not Supported.", pair.Gesture.GestureName,pair.Gesture.GestureType));
+                        throw new ApplicationException(string.Format("Gesture {0} of type {1} is not Supported.", pair.Gesture.GestureId, pair.Gesture.GestureType));
                     }
-                    if (!_gestureToCommandMap.ContainsKey(pair.Gesture.GestureName))
-                        _gestureToCommandMap[pair.Gesture.GestureName] = new List<string>();
-                    _gestureToCommandMap[pair.Gesture.GestureName].Add(pair.Command);
+                    if (!_gestureToCommandMap.ContainsKey(pair.Gesture.GestureId))
+                        _gestureToCommandMap[pair.Gesture.GestureId] = new List<XbmcCommand>();
+                    _gestureToCommandMap[pair.Gesture.GestureId].Add(pair.Command);
                 }
                     
 

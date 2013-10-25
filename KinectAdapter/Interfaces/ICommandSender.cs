@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using KinectAdapter.Models;
 
 namespace KinectAdapter.Interfaces
 {
@@ -10,8 +11,8 @@ namespace KinectAdapter.Interfaces
         /// <summary>
         /// Send a command with the given action ID.
         /// </summary>
-        /// <param name="ActionId">The ActionId of the command</param>
-        void SendCommand(string ActionId);
+        /// <param name="ActionId">The command to send</param>
+        void SendCommand(XbmcCommand  ActionId);
 
         /// <summary>
         /// Send a notification

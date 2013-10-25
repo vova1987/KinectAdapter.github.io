@@ -5,6 +5,7 @@ using System.Text;
 using KinectAdapter.Interfaces;
 using XBMC;
 using System.Diagnostics;
+using KinectAdapter.Models;
 
 namespace KinectAdapter.XBMC
 {
@@ -19,13 +20,17 @@ namespace KinectAdapter.XBMC
         #endregion
 
         #region members
-        EventClient _eventClient;
+        protected EventClient _eventClient;
+        private string _host;
+        private int _port;
         #endregion
 
         public XbmcCommandSender(string host = XbmcDefaultHost, int UdpPort = XbmcDefaultUdpPort)
         {
+            _host = host;
+            _port = UdpPort;
             _eventClient = new EventClient();
-            Initialize(host, UdpPort);
+            Initialize(_host, _port);
         }
 
         /// <summary>
@@ -34,10 +39,10 @@ namespace KinectAdapter.XBMC
         /// </summary>
         /// <param name="host">host to connect to</param>
         /// <param name="UdpPort">Udp Port to conenct to</param>
-        private void Initialize(string host, int UdpPort) 
+        private bool Initialize(string host, int UdpPort) 
         {
             
-            bool success = true ;
+            bool success = false ;
             try
             {
 
@@ -48,9 +53,9 @@ namespace KinectAdapter.XBMC
             {
                 Debug.WriteLine("Exception occcured when trying to connect with XBMC Client: " + ex.Message);
                 Debug.WriteLine(ex.StackTrace);
+                Debug.WriteLine("Failed to connect to XBMC. A retry wiull be made on each command send attemp");
             }
-            if(!success)
-                throw new ApplicationException("Connection with XBMC Application failed");
+            return success;
         }
 
         #region ICommandSender Implementation
@@ -59,9 +64,25 @@ namespace KinectAdapter.XBMC
         /// Use the inherited SendAction command of the XBMC Client
         /// </summary>
         /// <param name="ActionId"></param>
-        void ICommandSender.SendCommand(string ActionId)
+        void ICommandSender.SendCommand(XbmcCommand ActionId)
         {
-            _eventClient.SendAction(ActionId);
+            if (!_eventClient.Connected && !Initialize(_host,_port))
+            {
+                Debug.WriteLine("XBMC Disconnected. Command will not be sent!");
+                return;
+            }
+                
+            switch (ActionId.CommandType)
+            {
+                case CommandType.ActionCommand: _eventClient.SendAction(ActionId.CommandId);
+                    break;
+                case CommandType.KbCommand: _eventClient.SendButton(ActionId.CommandId, "KB", ButtonFlagsType.BTN_DOWN | ButtonFlagsType.BTN_NO_REPEAT);
+                    break;
+                case CommandType.MouseCommand:
+                    string[] args = ActionId.CommandId.Split(',');
+                    _eventClient.SendMouse(UInt16.Parse(args[0]), UInt16.Parse(args[1]));
+                    break;
+            }
         }
 
         /// <summary>

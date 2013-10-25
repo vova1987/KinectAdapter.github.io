@@ -79,7 +79,7 @@ namespace KinectAdapter.VoiceRecognition
 
         void _speechEngineSpeechRecognitionRejected(object sender, SpeechRecognitionRejectedEventArgs e)
         {
-            Debug.WriteLine("\rSpeech Rejected: \t{0} \n", e.Result.Text);
+            //Debug.WriteLine("\rSpeech Rejected: \t{0} \n", e.Result.Text);
         }
 
         void _speechEngineSpeechRecognized(object sender, SpeechRecognizedEventArgs e)
@@ -92,7 +92,7 @@ namespace KinectAdapter.VoiceRecognition
         void SpeechEngineSpeechHypothesized(object sender, SpeechHypothesizedEventArgs e)
         {
             Debug.WriteLine(string.Format("{0} - Confidence={1}\n", e.Result.Text, e.Result.Confidence));
-            if(e.Result.Confidence > 0.95)
+            if(e.Result.Confidence > 0.99)
                 if(GestureDetected != null)
                     GestureDetected(this, new GestureArgs(e.Result.Text,-1));
         }
@@ -118,7 +118,7 @@ namespace KinectAdapter.VoiceRecognition
 
         public bool IsGestureSupported(KinectGesture gesture)
         {
-            return gesture.GestureType == GestureType.Voice && _registetedGestures.Contains(gesture.GestureName);
+            return gesture.GestureType == GestureType.Voice && _registetedGestures.Contains(gesture.GestureId);
         }
         #endregion
 
