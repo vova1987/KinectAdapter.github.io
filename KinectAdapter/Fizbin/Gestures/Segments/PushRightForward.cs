@@ -31,7 +31,7 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
                     {
                         return GesturePartResult.Succeed;
                     }
-                    return GesturePartResult.Pausing;
+                    return GesturePartResult.Fail;
                 }
                 return GesturePartResult.Fail;
             }
@@ -53,10 +53,10 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
             if (skeleton.Joints[JointType.HandRight].Position.X < skeleton.Joints[JointType.ShoulderRight].Position.X
                 && skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ShoulderLeft].Position.X)
             {
-                // right hand below head height and hand higher than spine
+                // right hand below head height.
                 if (skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
                 {
-                    // right hand close to center of shoulders in the z axis
+                    // right hand far from center of shoulders in the z axis
                     if (skeleton.Joints[JointType.ShoulderCenter].Position.Z - skeleton.Joints[JointType.HandRight].Position.Z > 0.5)
                     {
                         return GesturePartResult.Succeed;

@@ -27,7 +27,7 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
                 if (skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.Head].Position.Y
                     && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
                 {
-                    // right hand close to center of shoulders in the z axis
+                    // right hand far from center of shoulders in the z axis
                     if (skeleton.Joints[JointType.ShoulderCenter].Position.Z - skeleton.Joints[JointType.HandRight].Position.Z > 0.5
                         && skeleton.Joints[JointType.ShoulderCenter].Position.Z - skeleton.Joints[JointType.HandLeft].Position.Z > 0.5)
                     {                        

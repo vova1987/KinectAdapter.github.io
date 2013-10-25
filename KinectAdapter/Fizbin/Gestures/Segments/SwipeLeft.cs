@@ -19,7 +19,7 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
         {
 
             // right hand in front of right elbow. left hand is below shoulder center.
-            if (skeleton.Joints[JointType.HandRight].Position.Z < skeleton.Joints[JointType.ElbowRight].Position.Z 
+            if (skeleton.Joints[JointType.HandRight].Position.Z < skeleton.Joints[JointType.ElbowRight].Position.Z
                 && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.ShoulderCenter].Position.Y)
             {
                 // right hand below head
@@ -28,9 +28,14 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
                     // right hand right of right shoulder
                     if (skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ShoulderRight].Position.X)
                     {
-                        return GesturePartResult.Succeed;
+                        // right hand is gripped.
+                        if (userInfo.HandPointers[1].HandEventType == InteractionHandEventType.Grip)
+                        {
+                            return GesturePartResult.Succeed;
+                        }
+                        return GesturePartResult.Fail;
                     }
-                    return GesturePartResult.Pausing;
+                    return GesturePartResult.Fail;
                 }
                 return GesturePartResult.Fail;
             }
@@ -51,14 +56,14 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
         public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo userInfo)
         {
             // right hand in front of right elbow. left hand below shoulders
-            if (skeleton.Joints[JointType.HandRight].Position.Z < skeleton.Joints[JointType.ElbowRight].Position.Z 
+            if (skeleton.Joints[JointType.HandRight].Position.Z < skeleton.Joints[JointType.ElbowRight].Position.Z
                 && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.ShoulderCenter].Position.Y)
             {
                 // right hand below head
                 if (skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
                 {
                     // right hand left of right shoulder & right of left shoulder
-                    if (skeleton.Joints[JointType.HandRight].Position.X < skeleton.Joints[JointType.ShoulderRight].Position.X 
+                    if (skeleton.Joints[JointType.HandRight].Position.X < skeleton.Joints[JointType.ShoulderRight].Position.X
                         && skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ShoulderLeft].Position.X)
                     {
                         return GesturePartResult.Succeed;
@@ -84,7 +89,7 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
         public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo userInfo)
         {
             // //Right hand in front of right elbow. left hand below shoulders.
-            if (skeleton.Joints[JointType.HandRight].Position.Z < skeleton.Joints[JointType.ElbowRight].Position.Z 
+            if (skeleton.Joints[JointType.HandRight].Position.Z < skeleton.Joints[JointType.ElbowRight].Position.Z
                 && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.ShoulderCenter].Position.Y)
             {
                 // //right hand below head.

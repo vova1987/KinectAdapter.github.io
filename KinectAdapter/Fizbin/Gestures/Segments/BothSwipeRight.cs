@@ -32,7 +32,7 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
                     {
                         return GesturePartResult.Succeed;
                     }
-                    return GesturePartResult.Pausing;
+                    return GesturePartResult.Fail;
                 }
                 return GesturePartResult.Fail;
             }

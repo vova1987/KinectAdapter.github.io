@@ -28,9 +28,14 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
                     // left hand left of left shoulder
                     if (skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.ShoulderLeft].Position.X)
                     {
-                        return GesturePartResult.Succeed;
+                        // left hand is gripped.
+                        if (userInfo.HandPointers[0].HandEventType == InteractionHandEventType.Grip)
+                        {
+                            return GesturePartResult.Succeed;
+                        }
+                        return GesturePartResult.Fail;
                     }
-                    return GesturePartResult.Pausing;
+                    return GesturePartResult.Fail;
                 }
                 return GesturePartResult.Fail;
             }

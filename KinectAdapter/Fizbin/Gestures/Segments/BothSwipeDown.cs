@@ -7,6 +7,25 @@ using KinectAdapter.Fizbin.Gestures.Segments;
 namespace KinectAdapter.Fizbin.Gestures.Segments
 {
 
+    public class BothSwipeDownSegment0 : IRelativeGestureSegment
+    {
+        /// <summary>
+        /// Checks the gesture.
+        /// </summary>
+        /// <param name="skeleton">The skeleton.</param>
+        /// <returns>GesturePartResult based on if the gesture part has been completed</returns>
+        public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo userInfo)
+        {
+            // either hand is gripped.
+            if (userInfo.HandPointers[0].HandEventType == InteractionHandEventType.Grip
+                || userInfo.HandPointers[1].HandEventType == InteractionHandEventType.Grip)
+            {
+                return GesturePartResult.Succeed;
+            }
+            return GesturePartResult.Pausing;
+        }
+    }
+
     /// <summary>
     /// The first part of the both hands swipe down gesture for the right hand
     /// </summary>
@@ -32,7 +51,7 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
                 {
                     return GesturePartResult.Succeed;
                 }
-                return GesturePartResult.Pausing;
+                return GesturePartResult.Fail;
             }
             return GesturePartResult.Fail;
         }
@@ -50,14 +69,13 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
         /// <returns>GesturePartResult based on if the gesture part has been completed</returns>
         public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo userInfo)
         {
-
-            // both hands below head
-            if (skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.Head].Position.Y
-                && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
+            // right hand is right to the shoulder center. left hand is left to the shoulder center
+            if (skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ShoulderCenter].Position.X
+                && skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.ShoulderCenter].Position.X)
             {
-                // right hand is right to the shoulder center. left hand is left to the shoulder center
-                if (skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ShoulderCenter].Position.X
-                    && skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.ShoulderCenter].Position.X)
+                // both hands below head
+                if (skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.Head].Position.Y
+                    && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
                 {
                     return GesturePartResult.Succeed;
                 }
@@ -81,9 +99,11 @@ namespace KinectAdapter.Fizbin.Gestures
 
         IRelativeGestureSegment[] ICompositeGesture.GetGestureSegments()
         {
-            IRelativeGestureSegment[] bothSwipeDownSegments = new IRelativeGestureSegment[2];
-            bothSwipeDownSegments[0] = new BothSwipeDownSegment1();
-            bothSwipeDownSegments[1] = new BothSwipeDownSegment2();
+            IRelativeGestureSegment[] bothSwipeDownSegments = new IRelativeGestureSegment[4];
+            bothSwipeDownSegments[0] = new BothSwipeDownSegment0();
+            bothSwipeDownSegments[1] = new BothSwipeDownSegment0();
+            bothSwipeDownSegments[2] = new BothSwipeDownSegment1();
+            bothSwipeDownSegments[3] = new BothSwipeDownSegment2();
             return bothSwipeDownSegments;
         }
     }

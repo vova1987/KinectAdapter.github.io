@@ -26,14 +26,18 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
                 // right hand is right to the shoulder center
                 if (skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ShoulderCenter].Position.X)
                 {
-                    return GesturePartResult.Succeed;
+                    // right hand is gripped.
+                    if (userInfo.HandPointers[1].HandEventType == InteractionHandEventType.Grip)
+                    {
+                        return GesturePartResult.Succeed;
+                    }
+                    return GesturePartResult.Fail;
                 }
-                return GesturePartResult.Pausing;
+                return GesturePartResult.Fail;
             }
             return GesturePartResult.Fail;
         }
     }
-
 
     /// <summary>
     /// The second part of the swipe up gesture for the right hand
@@ -47,14 +51,13 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
         /// <returns>GesturePartResult based on if the gesture part has been completed</returns>
         public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo userInfo)
         {
-
-            // right hand above head. left hand is not
-            if (skeleton.Joints[JointType.HandRight].Position.Y > skeleton.Joints[JointType.Head].Position.Y
-                && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
+            // right hand is right to the shoulder center and head.
+            if (skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.Head].Position.X
+                && skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ShoulderCenter].Position.X)
             {
-                // right hand is right to the shoulder center and head.
-                if (skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.Head].Position.X
-                    && skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ShoulderCenter].Position.X)
+                // right hand above head. left hand is not
+                if (skeleton.Joints[JointType.HandRight].Position.Y > skeleton.Joints[JointType.Head].Position.Y
+                    && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
                 {
                     return GesturePartResult.Succeed;
                 }
