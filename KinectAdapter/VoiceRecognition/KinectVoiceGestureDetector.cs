@@ -40,7 +40,7 @@ namespace KinectAdapter.VoiceRecognition
 
         protected void RegisterVoiceGestures()
         {
-            _registetedGestures = new string[]{ "Play", "Stop", "Start", "Pause", "Pause", "Close"};
+            _registetedGestures = new string[]{ "Play", "Stop", "Pause", "Videos","Pictures","Music"};
             foreach (var ges in _registetedGestures)
                 _choices.Add(ges);
         }
@@ -92,6 +92,9 @@ namespace KinectAdapter.VoiceRecognition
         void SpeechEngineSpeechHypothesized(object sender, SpeechHypothesizedEventArgs e)
         {
             Debug.WriteLine(string.Format("{0} - Confidence={1}\n", e.Result.Text, e.Result.Confidence));
+            if(e.Result.Confidence > 0.95)
+                if(GestureDetected != null)
+                    GestureDetected(this, new GestureArgs(e.Result.Text,-1));
         }
 
 

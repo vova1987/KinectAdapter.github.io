@@ -62,6 +62,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Fizbin\AutoRegisteringGestureController.cs" />
+    <Compile Include="Fizbin\Gestures\Segments\GripReleaseBothHands.cs" />
+    <Compile Include="Fizbin\Gestures\Segments\GripReleaseLeftHand.cs" />
+    <Compile Include="Fizbin\Gestures\Segments\GripReleaseRightHand.cs" />
     <Compile Include="Interfaces\ICompositeGesture.cs" />
     <Compile Include="Fizbin\Gestures\Segments\BothSwipeDown.cs" />
     <Compile Include="Fizbin\Gestures\Segments\BothSwipeLeft.cs" />

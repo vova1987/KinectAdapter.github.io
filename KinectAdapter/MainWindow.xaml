@@ -20,9 +20,9 @@
                 <k:KinectUserViewer k:KinectRegion.KinectRegion="{Binding ElementName=region}" Height="147" Width="448" />
                 <k:KinectRegion x:Name="region" HorizontalAlignment="Left" Height="100" Margin="10,76.5,0,0" VerticalAlignment="Top" Width="100" KinectSensor="{Binding KinectSensor, ElementName=kinectChooserEx}"/>
             </StackPanel>
-            <Viewbox Grid.RowSpan="3" Grid.Row="0" Grid.Column="1">
-                <TextBlock Name="tb" FontFamily="Lucida Console" Text="Initializing..."/>
-            </Viewbox>
+        <Viewbox Grid.RowSpan="3" Grid.Row="0" Grid.Column="1">
+            <TextBlock Name="tb" FontFamily="Lucida Console" Text="Initializing..."/>
+        </Viewbox>
         <Canvas Width="200" Height="150" Name="skeletonCanvas" Background="Black" ClipToBounds="True" Margin="0,0,0,0" Grid.Row="1" Grid.Column="0"/>
         <StackPanel Grid.Row="2" Grid.Column="0">
             <TextBox Height="60" Name="tb2" Width="180" />

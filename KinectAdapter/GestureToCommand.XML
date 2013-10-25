@@ -114,7 +114,7 @@
       <GestureName>PushRightForward</GestureName>
       <GestureType>Physical</GestureType>
     </Gesture>
-    <Command>Play</Command>
+    <Command>playpause</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture>

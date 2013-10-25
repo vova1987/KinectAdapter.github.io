@@ -75,6 +75,7 @@ namespace KinectAdapter
 
             _sensor.Start();
             IGestureDetector gestureDetector = new InteractiveGestureDetector(_sensor);
+            ((InteractiveGestureDetector)gestureDetector).DumpReady += InteractionStreamOnInteractionFrameReady;
             IGestureDetector voiceDetector = new VoiceRecognition.KinectVoiceGestureDetector(_sensor);
             ICommandSender commandSender = new XbmcCommandSender();
             adapter = new GestureToCommandAdapter(@"GestureToCommand.XML", commandSender, gestureDetector, voiceDetector);
@@ -278,6 +279,13 @@ namespace KinectAdapter
 
         #endregion
 
+        #region Interaction Stream Debugging
+        UserInfo[] _userInfos = new UserInfo[InteractionFrame.UserInfoArrayLength];
 
+        private void InteractionStreamOnInteractionFrameReady(object sender, KinectAdapter.PhysicalRecognition.InteractiveGestureDetector.StringEventArgs dump)
+        {
+            tb.Text = dump.TextData;
+        }
+        #endregion
     }
 }

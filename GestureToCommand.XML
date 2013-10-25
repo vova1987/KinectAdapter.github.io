@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="Windows-1252"?>
+<!--Info:
+    Supported Gesture Types: 
+    * Physical 
+    * Voice
+    For a full list of available XBMC Commands, see : http://wiki.xbmc.org/?title=Action_IDs
+    Steps to Add a new Gesture:
+    1. Implement the Gesture Segments in The Fizbin.Gestures.Segments namespace of this project.
+    2. Implement the ICompositeGesture interface to combine the segments and add an ID to your gseture.
+    3. In this file, add a new entry with you gesture name and type and any XBMC ActionId in the Command field.
+    4. That's it! The new gesture will automatically be loaded and registerd in Runtime.
+-->
 <ArrayOfGestureCommandPair>
   <GestureCommandPair>
     <Gesture>
@@ -103,7 +114,7 @@
       <GestureName>PushRightForward</GestureName>
       <GestureType>Physical</GestureType>
     </Gesture>
-    <Command>Play</Command>
+    <Command>playpause</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture>
@@ -118,5 +129,63 @@
       <GestureType>Physical</GestureType>
     </Gesture>
     <Command>FastForward</Command>
+  </GestureCommandPair>
+  
+  <GestureCommandPair>
+    <Gesture>
+      <GestureName>GripReleaseRightHand</GestureName>
+      <GestureType>Physical</GestureType>
+    </Gesture>
+    <Command>volumeup</Command>
+  </GestureCommandPair>
+  <GestureCommandPair>
+    <Gesture>
+      <GestureName>GripReleaseLeftHand</GestureName>
+      <GestureType>Physical</GestureType>
+    </Gesture>
+    <Command>volumedown</Command>
+  </GestureCommandPair>
+  <GestureCommandPair>
+    <Gesture>
+      <GestureName>GripReleaseBothHands</GestureName>
+      <GestureType>Physical</GestureType>
+    </Gesture>
+    <Command>mute</Command>
+  </GestureCommandPair>
+  <!-- Voice Command -->
+  <GestureCommandPair>
+    <Gesture>
+      <GestureName>Play</GestureName>
+      <GestureType>Voice</GestureType>
+    </Gesture>
+    <Command>play</Command>
+  </GestureCommandPair>
+  <GestureCommandPair>
+    <Gesture>
+      <GestureName>Stop</GestureName>
+      <GestureType>Voice</GestureType>
+    </Gesture>
+    <Command>Pause</Command>
+  </GestureCommandPair>
+  <GestureCommandPair>
+    <Gesture>
+      <GestureName>Pictures</GestureName>
+      <GestureType>Voice</GestureType>
+    </Gesture>
+    <Command>pictures</Command>
+  </GestureCommandPair>
+  <GestureCommandPair>
+    <Gesture>
+      <GestureName>Music</GestureName>
+      <GestureType>Voice</GestureType>
+    </Gesture>
+    <Command>music</Command>
+  </GestureCommandPair>
+  <GestureCommandPair>
+    <Gesture>
+      <GestureName>Videos</GestureName>
+      <GestureType>Voice</GestureType>
+    </Gesture>
+    <Command>videos</Command>
   </GestureCommandPair>
 </ArrayOfGestureCommandPair>
