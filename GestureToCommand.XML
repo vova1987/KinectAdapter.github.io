@@ -4,8 +4,8 @@
     * Physical 
     * Voice
     Supported Command Types:
-    * ActionCommand,
-    * KbCommand,
+    * ActionCommand
+    * KbCommand
     * MouseCommand
     For a full list of available XBMC Commands, see : http://wiki.xbmc.org/?title=Action_IDs
     Steps to Add a new Gesture:
@@ -21,11 +21,11 @@
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">BothSwipeLeft</Gesture>
-    <Command Type="ActionCommand">prev_track</Command>
+    <Command Type="KbCommand">prev_track</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">BothSwipeRight</Gesture>
-    <Command Type="ActionCommand">next_track</Command>
+    <Command Type="KbCommand">next_track</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">BothSwipeUp</Gesture>
@@ -33,19 +33,11 @@
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">WaveLeft</Gesture>
-    <Command Type="KbCommand">Left</Command>
-  </GestureCommandPair>
-  <GestureCommandPair>
-    <Gesture Type="Physical">WaveLeft</Gesture>
-    <Command Type="KbCommand">StepBack</Command>
+    <Command Type="KbCommand">left</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">WaveRight</Gesture>
-    <Command Type="KbCommand">Right</Command>
-  </GestureCommandPair>
-  <GestureCommandPair>
-    <Gesture Type="Physical">WaveRight</Gesture>
-    <Command Type="KbCommand">StepForward</Command>
+    <Command Type="KbCommand">right</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">MinorSwipeDown</Gesture>
@@ -62,6 +54,10 @@
   <GestureCommandPair>
     <Gesture Type="Physical">PushRightForward</Gesture>
     <Command Type="KbCommand">enter</Command>
+  </GestureCommandPair>
+  <GestureCommandPair>
+    <Gesture Type="Physical">RightHandCircleHead</Gesture>
+    <Command Type="KbCommand">stop</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">SwipeLeft</Gesture>

@@ -15,11 +15,12 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
         /// <returns>GesturePartResult based on if the gesture part has been completed</returns>
         public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo UserInfo = null)
         {
-            // hand above elbow
-            if (skeleton.Joints[JointType.HandRight].Position.Y > skeleton.Joints[JointType.ElbowRight].Position.Y)
+            // hand above elbow and right of head
+            if (skeleton.Joints[JointType.HandRight].Position.Y > skeleton.Joints[JointType.ElbowRight].Position.Y
+                && skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.Head].Position.X)
             {
-                // hand right of elbow
-                if (skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ElbowRight].Position.X)
+                // hand left of elbow
+                if (skeleton.Joints[JointType.HandRight].Position.X < skeleton.Joints[JointType.ElbowRight].Position.X)
                 {
                     return GesturePartResult.Succeed;
                 }
@@ -42,11 +43,12 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
         /// <returns>GesturePartResult based on if the gesture part has been completed</returns>
         public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo UserInfo = null)
         {
-            // hand above elbow
-            if (skeleton.Joints[JointType.HandRight].Position.Y > skeleton.Joints[JointType.ElbowRight].Position.Y)
+            // hand above elbow and right of head
+            if (skeleton.Joints[JointType.HandRight].Position.Y > skeleton.Joints[JointType.ElbowRight].Position.Y
+                && skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.Head].Position.X)
             {
                 // hand right of elbow
-                if (skeleton.Joints[JointType.HandRight].Position.X < skeleton.Joints[JointType.ElbowRight].Position.X)
+                if (skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ElbowRight].Position.X)
                 {
                     return GesturePartResult.Succeed;
                 }
@@ -73,9 +75,11 @@ namespace KinectAdapter.Fizbin.Gestures
 
         IRelativeGestureSegment[] ICompositeGesture.GetGestureSegments()
         {
-            IRelativeGestureSegment[] waveRightSegments = new IRelativeGestureSegment[2];
+            IRelativeGestureSegment[] waveRightSegments = new IRelativeGestureSegment[4];
             waveRightSegments[0] = new WaveRightSegment1();
             waveRightSegments[1] = new WaveRightSegment2();
+            waveRightSegments[2] = new WaveRightSegment1();
+            waveRightSegments[3] = new WaveRightSegment2();
             return waveRightSegments;
         }
     }

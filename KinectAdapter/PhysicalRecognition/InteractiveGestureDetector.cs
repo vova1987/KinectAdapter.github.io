@@ -116,10 +116,9 @@ namespace KinectAdapter.PhysicalRecognition
                 if (userID == 0)
                     continue;
                 //Update with all skeletons and current user info
-                //TODO: Maybe just use the last one?
-                foreach(var skeleton in _skeletons)
-                    if(skeleton.TrackingState != SkeletonTrackingState.NotTracked)
-                        gestureController.UpdateAllGestures(skeleton, userInfo);
+                //Currently use last valid skeleton
+                var lastSkeleton = _skeletons.Where((s) => s.TrackingState != SkeletonTrackingState.NotTracked).Last(); 
+                gestureController.UpdateAllGestures(lastSkeleton, userInfo);
                 
             }
             if (DEBUG)
