@@ -1,6 +1,6 @@
 KinectAdapter
 =============
-
+Owr Site: http://vova1987.github.io/KinectAdapter.github.io/
 XBMC Kinect Adapter
 Overview:
 This project is intended to Achieve full NUI for the XBMC Media Center Application using the Microsoft Kinect device.
