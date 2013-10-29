@@ -3,6 +3,7 @@ using Fizbin.Kinect.Gestures;
 using Microsoft.Kinect.Toolkit.Interaction;
 using KinectAdapter.Fizbin.Gestures.Segments;
 
+//VOVACOOPER 29.10.2013
 namespace KinectAdapter.Fizbin.Gestures.Segments
 {
     /// <summary>
