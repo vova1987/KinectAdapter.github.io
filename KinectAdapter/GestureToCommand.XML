@@ -80,7 +80,7 @@
     <Command Type="KbCommand">volume_mute</Command>
   </GestureCommandPair>
   <!-- Voice Commands -->
-  <GestureCommandPair>
+  <!--<GestureCommandPair>
     <Gesture Type="Voice">Play</Gesture>
     <Command Type="KbCommand">p</Command>
   </GestureCommandPair>
@@ -99,5 +99,5 @@
   <GestureCommandPair>
     <Gesture Type="Voice">Videos</Gesture>
     <Command Type="ActionCommand">videos</Command>
-  </GestureCommandPair>
+  </GestureCommandPair>-->
 </ArrayOfGestureCommandPair>
