@@ -59,6 +59,16 @@ namespace KinectAdapter.PhysicalRecognition
                 GestureDetected(this, new GestureArgs(e.GestureName, e.TrackingId));
         }
 
+        /// <summary>
+        /// helper function
+        /// </summary>
+        /// <param name="gesture">The gesture to test </param>
+        /// <returns></returns>
+        private bool IsGestureSupported(KinectGesture gesture)
+        {
+            return gesture.GestureType == GestureType.Physical && gestureController.Gestures.Contains(gesture.GestureId);
+        }
+
         #region Kinect Events
         private void SensorOnSkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs skeletonFrameReadyEventArgs)
         {
@@ -129,12 +139,22 @@ namespace KinectAdapter.PhysicalRecognition
         #region IGestureDetector Implementation
         public event EventHandler<KinectAdapter.Interfaces.GestureArgs> GestureDetected;
 
-        public bool IsGestureSupported(KinectGesture gesture)
-        {
-            return gesture.GestureType == GestureType.Physical && gestureController.Gestures.Contains(gesture.GestureId);
-        }
+        
 
         public GestureType GestureType { get { return Models.GestureType.Physical; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gestuers">The gestures to Register</param>
+        public void RegisterGestures(IEnumerable<KinectGesture> gestuers)
+        {
+            //Do nothing here, since Fizbin Gesture Detector is using an AutoRegistering controller!
+            //just check if the gestures are supported!
+            foreach(var g in gestuers)
+                if (!IsGestureSupported(g))
+                    throw new GestureNotSupportedException("Gesture is not supported by Kinect Gesture Detector: "+g.GestureId);
+        }
         #endregion
 
         #region debugging

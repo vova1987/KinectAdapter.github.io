@@ -22,30 +22,25 @@ namespace KinectAdapter.VoiceRecognition
         private Stream _stream;
         private RecognizerInfo _recognizerInfo;
         private Choices _choices;
-        private string[] _registetedGestures;
         #endregion
 
+        /// <summary>
+        /// Create a new Kinect Voice Gesture Detector.
+        /// Note that Register gestures must be called to complete initialization!
+        /// </summary>
+        /// <param name="sensor"></param>
         public KinectVoiceGestureDetector(KinectSensor sensor)
         {
             _sensor = sensor;
             _choices = new Choices();
-            RegisterVoiceGestures();
-            //FOR TEST
-
-            
-            // END TEST
             _recognizerInfo = SpeechRecognitionEngine.InstalledRecognizers()[0];
-            BuildSpeechEngine(_recognizerInfo);
+            
         }
 
-        protected void RegisterVoiceGestures()
-        {
-            _registetedGestures = new string[]{ "Play", "Stop", "Pause", "Videos","Pictures","Music"};
-            foreach (var ges in _registetedGestures)
-                _choices.Add(ges);
-        }
-
-
+        /// <summary>
+        /// Build a new Speech Engine based on the provided gestures.
+        /// </summary>
+        /// <param name="rec">Recognizer Info struct</param>
         void BuildSpeechEngine(RecognizerInfo rec)
         {
             _speechEngine = new SpeechRecognitionEngine(rec.Id);
@@ -92,9 +87,7 @@ namespace KinectAdapter.VoiceRecognition
         void SpeechEngineSpeechHypothesized(object sender, SpeechHypothesizedEventArgs e)
         {
             Debug.WriteLine(string.Format("{0} - Confidence={1}\n", e.Result.Text, e.Result.Confidence));
-            if(e.Result.Confidence > 0.99)
-                if(GestureDetected != null)
-                    GestureDetected(this, new GestureArgs(e.Result.Text,-1));
+            
         }
 
 
@@ -116,16 +109,22 @@ namespace KinectAdapter.VoiceRecognition
         #region IGestureDetector Implementation
         public event EventHandler<KinectAdapter.Interfaces.GestureArgs> GestureDetected;
 
-        public bool IsGestureSupported(KinectGesture gesture)
-        {
-            return gesture.GestureType == GestureType.Voice && _registetedGestures.Contains(gesture.GestureId);
-        }
-        #endregion
-
-
         public GestureType GestureType
         {
             get { return GestureType.Voice; }
         }
+
+        public void RegisterGestures(IEnumerable<KinectGesture> gestures)
+        {
+            //Add all voice gestures
+            foreach (var ges in gestures.Where((g)=>g.GestureType == Models.GestureType.Voice))
+                _choices.Add(ges.GestureId);
+            //After registering, Build the Speech Engine
+            BuildSpeechEngine(_recognizerInfo);
+        }
+        #endregion
+
+
+        
     }
 }

@@ -17,16 +17,14 @@ namespace KinectAdapter.Interfaces
         event EventHandler<GestureArgs> GestureDetected;
 
         /// <summary>
-        /// Return true only if thegiven gesture is supported.
-        /// </summary>
-        /// <param name="gesture"></param>
-        /// <returns></returns>
-        bool IsGestureSupported(KinectGesture gesture);
-
-        /// <summary>
         /// Get the Type of Gestures detected by this detector
         /// </summary>
-        GestureType GestureType { get; } 
+        GestureType GestureType { get; }
+
+        /// <summary>
+        /// Register the given list of gestures. Might reject a non-supported gesture.
+        /// </summary>
+        void RegisterGestures(IEnumerable<KinectGesture> gestures);
     }
 
     /// <summary>
@@ -50,5 +48,13 @@ namespace KinectAdapter.Interfaces
             GestureId = gestureName;
             UserId = userId;
         }
+    }
+
+    /// <summary>
+    /// A custom exception thrown by detectors in case a gesture is not supported
+    /// </summary>
+    public class GestureNotSupportedException : Exception
+    {
+        public GestureNotSupportedException(string Message) : base(Message) { }
     }
 }

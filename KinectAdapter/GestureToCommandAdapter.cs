@@ -12,7 +12,7 @@ namespace KinectAdapter
     /// <summary>
     /// This is the main class.
     /// Given a list of gesture detectors, the adapter wires each detected gesture to the corresponding Action defined the in XML configuration file.
-    /// The Action is then sent using hte provided CommandSender
+    /// The Action is then sent using the provided CommandSender
     /// </summary>
     public class GestureToCommandAdapter
     {
@@ -32,7 +32,7 @@ namespace KinectAdapter
             _gestureToCommandMap = new Dictionary<string, IList<XbmcCommand>>();
             foreach(var detector in _gestureDetectors)
                 detector.GestureDetected += OnGestureRecognized;
-            LoadGestures(GestureFilePath);
+            LoadAndRegisterGestures(GestureFilePath);
         }
 
         /// <summary>
@@ -58,32 +58,43 @@ namespace KinectAdapter
         /// Parse Configuration file
         /// </summary>
         /// <param name="GestureFilePath">The path tot he Configuration file</param>
-        private void LoadGestures(string GestureFilePath)
+        private void LoadAndRegisterGestures(string GestureFilePath)
         {
+            //Load gestures from file
             XmlSerializer xmlser = new XmlSerializer(typeof(List<GestureCommandPair>));
             List<GestureCommandPair> gestureToCommandList;
             using (StreamReader srdr = new StreamReader(GestureFilePath))
             {
                 gestureToCommandList = (List<GestureCommandPair>)xmlser.Deserialize(srdr);
             }
-            //Populate Gesture to Command Dictionary
+
             if (gestureToCommandList != null)
             {
+                //Register gestures with Detectors
+                foreach (var detector in _gestureDetectors)
+                {
+                    var gestures = from pair in gestureToCommandList
+                                   where pair.Gesture.GestureType == detector.GestureType
+                                   select pair.Gesture;
+                    try
+                    {
+                        detector.RegisterGestures(gestures);
+                    }
+                    catch (GestureNotSupportedException ex)
+                    {
+                        //Throw exception if a gesture is not supported by the detector
+                        throw new ApplicationException(ex.Message);
+                    }
+                    
+                }
+                //Populate Gesture to Command Dictionary
                 foreach (var pair in gestureToCommandList)
                 {
-                    //test for existence of the gesture
-                    var Supportingdetectors = _gestureDetectors.Where((d) => d.IsGestureSupported(pair.Gesture));
                     
-                    if (Supportingdetectors == null || Supportingdetectors.Count()==0)
-                    {
-                        throw new ApplicationException(string.Format("Gesture {0} of type {1} is not Supported.", pair.Gesture.GestureId, pair.Gesture.GestureType));
-                    }
                     if (!_gestureToCommandMap.ContainsKey(pair.Gesture.GestureId))
                         _gestureToCommandMap[pair.Gesture.GestureId] = new List<XbmcCommand>();
                     _gestureToCommandMap[pair.Gesture.GestureId].Add(pair.Command);
                 }
-                    
-
             }
                 
         }
