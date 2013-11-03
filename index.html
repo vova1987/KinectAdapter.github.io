@@ -53,6 +53,28 @@ You will find simple usage instructions as well as code snippets to help you cre
 <a name="installation-instructions" class="anchor" href="#installation-instructions"><span class="octicon octicon-link"></span></a>Installation instructions</h3>
 
 <p>Just download the bin directory from the above path and extract it locally on your XBMC PC. Turn on the Kinect and fire up the app. You are ready to GO!</p>
+
+<h3>
+<a name="gesture-to-command-mapping" class="anchor" href="#gesture-to-command-mapping"><span class="octicon octicon-link"></span></a>Gesture to Command mapping</h3>
+
+<p>The mapping of all availble gestures to XBMC commands is dynamic. Use the provided XML to define your own mappings. The structure of a mapping is as follows:
+<code>&lt;GestureCommandPair&gt;
+    &lt;Gesture Type="Physical"&gt;TheIdOfYourGesture&lt;/Gesture&gt;
+    &lt;Command Type="KbCommand"&gt;KbButtonToSendToXBMC&lt;/Command&gt;
+  &lt;/GestureCommandPair&gt;</code>
+As you can see, all you need to do is to add such an elemnt to the xml. if the Gesture ID exists (i.e. there is a class implementing it) it will be mapped to the given XBMC KB command.
+See the XBMC documentation to find all available KB commands.</p>
+
+<ul>
+<li>You can also add voice gestures by simply setting the tyoe to 'Voice' and entering any word as the gesture ID. Kinect will try and identify this word for you!</li>
+</ul><h3>
+<a name="implementing-a-new-gesture" class="anchor" href="#implementing-a-new-gesture"><span class="octicon octicon-link"></span></a>Implementing a new Gesture</h3>
+
+<p>If you really want to go pro and implement your own custom gestures, here are the steps:
+1. For each segment of your gesture, create a new class that implements <code>IGestureSegment</code>. Implement the only method of the interface: <code>CheckGesture()</code>. This method will be called to determine, based on your criteria, is this segment valid. You have all the Skeleton and interaction data to your disposal. For examples, see the segments already implemented in our project.
+2. Add a new class that implements <code>ICompositeGesture</code>. Implement the two methods: one to return a unique gesture ID and the second to return a list of Segments for this gesture. Note: The Segments you create are reusable! you can use the same segments to implement different gestures. For such an example - see the WaveLeft/WaveRight gesture classes: they implement a gesture by concatenating the same segments a few times. Make sure the class you created is placed in the <code>KinectAdapter.Fizbin.Gestures</code> namespace.
+3. Open <code>GestureToCommand.xml</code> and add a new mapping from your gesture(use the id returned by the <code>ICompositeGesture</code>interface) to any XBMC command. The type of your gesture should be 'Physical'.
+4. That's it! the class you created will be dynamically loaded and the command applied according to the xml mapping.</p>
         </section>
 
         <aside id="sidebar">
