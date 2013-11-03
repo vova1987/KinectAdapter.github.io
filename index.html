@@ -1,67 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
     <title>Kinectadapter.github.io by vova1987</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
   </head>
-
   <body>
-    <header>
-      <div class="inner">
-        <h1>Kinectadapter.github.io</h1>
-        <h2>XBMC Kinect Adapter</h2>
-        <a href="https://github.com/vova1987/KinectAdapter.github.io" class="button"><small>View project on</small>GitHub</a>
-      </div>
-    </header>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/vova1987/KinectAdapter.github.io">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/vova1987/KinectAdapter.github.io/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/vova1987/KinectAdapter.github.io/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h3>
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Kinectadapter.github.io</h1>
+          <p>XBMC Kinect Adapter</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/vova1987">vova1987</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h3>
 <a name="welcome-to-xbmc-kinect-adapter-git-page" class="anchor" href="#welcome-to-xbmc-kinect-adapter-git-page"><span class="octicon octicon-link"></span></a>Welcome to XBMC Kinect Adapter Git Page!</h3>
 
-<p>This page contains all you need yo know on this project!
-You will find simple usage instructions as well as code snippets to help you create and detect your own Gestures!</p>
+<p>XBMC Kinect Adapter is an open source project that allows using a Kinect device for controlling the XBMC media center. The project provides both ready-to-deploy executable and an easy to use developer platform for developing yet more new and exciting gestures.</p>
 
 <h3>
 <a name="xbmc-what" class="anchor" href="#xbmc-what"><span class="octicon octicon-link"></span></a>XBMC What?</h3>
 
-<p>XBMC is the most widespread open source solution for home entertainment. XBMC lets you control your home theater and adds cool features and custom plugins to enhance your experience. XBMC allows you to control its simple and intuitive interface using any kind of input device - keyboard, mouse, remote, cellphone, etc. BUT - what if you want something even better? even easier? </p>
+<p><a href="http://xbmc.org">XBMC</a>is the most widespread open source solution for home entertainment. XBMC lets you control your home theater and adds cool features and custom plugins to enhance your experience. XBMC allows you to control its simple and intuitive interface using any kind of input device - keyboard, mouse, remote, cellphone, etc. BUT - what if you want something even better? even easier? </p>
 
 <h3>
 <a name="kinect-who" class="anchor" href="#kinect-who"><span class="octicon octicon-link"></span></a>Kinect Who?</h3>
 
-<p>Kinect is a M$ developed device used mainly in the XBOX gaming platform to detect user position and orientation. It is a cutting-edge technology just waiting to be exploited...</p>
+<p><a href="www.microsoft.com/en-us/kinectforwindows/">Kinect</a>is a M$ developed device used mainly in the XBOX gaming platform to detect user position and orientation. It is a cutting-edge technology just waiting to be exploited...</p>
 
 <h3>
 <a name="xbmc-kinect-adapter" class="anchor" href="#xbmc-kinect-adapter"><span class="octicon octicon-link"></span></a>XBMC Kinect Adapter</h3>
 
-<p>This is our little project. Our goal is to enable you to control your XBMC using your Kinect device. Use your hands and voice to tell the TV what to do! no more complex remote controls and cumbersome gaming pads. All you need to do is wave your hand XBMC will follow.</p>
+<p>This is our project. Our goal is to enable you to control your XBMC using your Kinect device. Use your hands and voice to tell the TV what to do! no more complex remote controls and cumbersome gaming pads. All you need to do is wave your hand XBMC will follow.</p>
 
 <h3>
-<a name="gestures" class="anchor" href="#gestures"><span class="octicon octicon-link"></span></a>Supported Gestures</h3>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features:</h3>
 
-<p>Wave Right</p>
-<a href="gestures.html">Gesture Page</a>
-
-
-<h3>
+<ol>
+<li>Large set of hand and body gestures implemented. </li>
+<li>Skeleton info is combined with the UserInfo stream to provide more intuitive gestures (Grap, release, etc.) </li>
+<li>Using Voice recognition of the Kinect device and the Microsoft Speech recognition library, to add even more control options </li>
+<li>XBMC Command Sender that can send all existing XBMC control commands. </li>
+<li>A fully configurable user friendly gesture-to-command mapping using a dedicated XML. </li>
+<li>Reusable Gesture Detectors and Command sender classes that can be plugged in into any project requiring gesture recognition
+Try it out: our platform is extensible and easy to use - feel free to to fork and add your own gestures. Learn: Take a look on the already implemented gestures - they will give you a good idea on how to implement your own gestures</li>
+</ol><h3>
 <a name="installation-instructions" class="anchor" href="#installation-instructions"><span class="octicon octicon-link"></span></a>Installation instructions</h3>
 
-<p>Just download the bin directory from the above path and extract it locally on your XBMC PC. Turn on the Kinect and fire up the app. You are ready to GO!</p>
-
-<h3>
+<ol>
+<li>Download the Binary package.</li>
+<li>Run the EXE File</li>
+<li>Start Controlling your XBMC!</li>
+</ol><h3>
 <a name="gesture-to-command-mapping" class="anchor" href="#gesture-to-command-mapping"><span class="octicon octicon-link"></span></a>Gesture to Command mapping</h3>
 
 <p>The mapping of all availble gestures to XBMC commands is dynamic. Use the provided XML to define your own mappings. The structure of a mapping is as follows:
@@ -77,30 +92,18 @@ See the XBMC documentation to find all available KB commands.</p>
 </ul><h3>
 <a name="implementing-a-new-gesture" class="anchor" href="#implementing-a-new-gesture"><span class="octicon octicon-link"></span></a>Implementing a new Gesture</h3>
 
-<p>If you really want to go pro and implement your own custom gestures, here are the steps:
-1. For each segment of your gesture, create a new class that implements <code>IGestureSegment</code>. Implement the only method of the interface: <code>CheckGesture()</code>. This method will be called to determine, based on your criteria, is this segment valid. You have all the Skeleton and interaction data to your disposal. For examples, see the segments already implemented in our project.
-2. Add a new class that implements <code>ICompositeGesture</code>. Implement the two methods: one to return a unique gesture ID and the second to return a list of Segments for this gesture. Note: The Segments you create are reusable! you can use the same segments to implement different gestures. For such an example - see the WaveLeft/WaveRight gesture classes: they implement a gesture by concatenating the same segments a few times. Make sure the class you created is placed in the <code>KinectAdapter.Fizbin.Gestures</code> namespace.
-3. Open <code>GestureToCommand.xml</code> and add a new mapping from your gesture(use the id returned by the <code>ICompositeGesture</code>interface) to any XBMC command. The type of your gesture should be 'Physical'.
-4. That's it! the class you created will be dynamically loaded and the command applied according to the xml mapping.</p>
-        </section>
+<p>If you really want to go pro and implement your own custom gestures, here are the steps:</p>
 
-        <aside id="sidebar">
-          <a href="https://github.com/vova1987/KinectAdapter.github.io/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/vova1987/KinectAdapter.github.io/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
+<ol>
+<li><p>For each segment of your gesture, create a new class that implements <code>IGestureSegment</code>. Implement the only method of the interface: <code>CheckGesture()</code>. This method will be called to determine, based on your criteria, is this segment valid. You have all the Skeleton and interaction data to your disposal. For examples, see the segments already implemented in our project.</p></li>
+<li><p>Add a new class that implements <code>ICompositeGesture</code>. Implement the two methods: one to return a unique gesture ID and the second to return a list of Segments for this gesture. Note: The Segments you create are reusable! you can use the same segments to implement different gestures. For such an example - see the WaveLeft/WaveRight gesture classes: they implement a gesture by concatenating the same segments a few times. Make sure the class you created is placed in the <code>KinectAdapter.Fizbin.Gestures</code> namespace.</p></li>
+<li><p>Open <code>GestureToCommand.xml</code> and add a new mapping from your gesture(use the id returned by the <code>ICompositeGesture</code>interface) to any XBMC command. The type of your gesture should be 'Physical'.</p></li>
+<li><p>That's it! the class you created will be dynamically loaded and the command applied according to the xml mapping.</p></li>
+</ol>
+      </section>
 
-          <p class="repo-owner"><a href="https://github.com/vova1987/KinectAdapter.github.io"></a> is maintained by <a href="https://github.com/vova1987">vova1987</a>.</p>
-
-          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
     </div>
-
-  
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
   </body>
 </html>
