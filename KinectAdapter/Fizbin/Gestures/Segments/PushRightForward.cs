@@ -19,9 +19,10 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
         public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo userInfo)
         {
 
-            // right hand between shoulders
+            // right hand between shoulders. left is not
             if (skeleton.Joints[JointType.HandRight].Position.X < skeleton.Joints[JointType.ShoulderRight].Position.X
-                && skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ShoulderLeft].Position.X)
+                && skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ShoulderLeft].Position.X
+                && skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.ShoulderLeft].Position.X)
             {
                 // right hand below head height
                 if (skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.Head].Position.Y )
@@ -49,9 +50,10 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
         public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo userInfo)
         {
 
-            // right hand between shoulders
+            // right hand between shoulders. left is not
             if (skeleton.Joints[JointType.HandRight].Position.X < skeleton.Joints[JointType.ShoulderRight].Position.X
-                && skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ShoulderLeft].Position.X)
+                && skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ShoulderLeft].Position.X
+                && skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.ShoulderLeft].Position.X)
             {
                 // right hand below head height.
                 if (skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.Head].Position.Y)

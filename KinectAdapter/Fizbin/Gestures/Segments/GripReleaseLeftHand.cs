@@ -10,7 +10,6 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
     /// </summary>
     public class GripReleaseLeftHandSegment1 : IRelativeGestureSegment
     {
-        private bool _isInGrip = false;
         /// <summary>
         /// Checks the gesture.
         /// </summary>
@@ -28,20 +27,9 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
                     // Left hand close to center of shoulders in the z axis
                     if (skeleton.Joints[JointType.ShoulderCenter].Position.Z - skeleton.Joints[JointType.HandLeft].Position.Z > 0.5)
                     {
-                        //TODO chech which hand is which? assume 0 = left
+                        // left hand grip release
                         if (userInfo.HandPointers[0].HandEventType == InteractionHandEventType.GripRelease)
                         {
-                            this._isInGrip = false;
-                            return GesturePartResult.Succeed;
-                        }
-                        else if (userInfo.HandPointers[0].HandEventType == InteractionHandEventType.Grip) //Grip was detected. ro remember it to the next frame and pause
-                        {
-                            this._isInGrip = true;
-                            return GesturePartResult.Pausing;
-                        }
-                        else if (this._isInGrip == true && userInfo.HandPointers[0].HandEventType == InteractionHandEventType.None) //Rlease after grip was detected
-                        {
-                            this._isInGrip = false;
                             return GesturePartResult.Succeed;
                         }
                         return GesturePartResult.Pausing;
@@ -66,9 +54,8 @@ namespace KinectAdapter.Fizbin.Gestures
 
         IRelativeGestureSegment[] ICompositeGesture.GetGestureSegments()
         {
-            IRelativeGestureSegment[] GripReleaseLeftHand = new IRelativeGestureSegment[2];
+            IRelativeGestureSegment[] GripReleaseLeftHand = new IRelativeGestureSegment[1];
             GripReleaseLeftHand[0] = new GripReleaseLeftHandSegment1();
-            GripReleaseLeftHand[1] = new GripReleaseLeftHandSegment1();
             return GripReleaseLeftHand;
         }
     }

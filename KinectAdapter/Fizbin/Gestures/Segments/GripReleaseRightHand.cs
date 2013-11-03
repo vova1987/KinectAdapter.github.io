@@ -10,7 +10,6 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
     /// </summary>
     public class GripReleaseRightHandSegment1 : IRelativeGestureSegment
     {
-        private bool _isInGrip = false;
         /// <summary>
         /// Checks the gesture.
         /// </summary>
@@ -25,23 +24,12 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
                 // right hand below head height
                 if (skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
                 {
-                    // right hand close to center of shoulders in the z axis
+                    // right hand far from center of shoulders in the z axis
                     if (skeleton.Joints[JointType.ShoulderCenter].Position.Z - skeleton.Joints[JointType.HandRight].Position.Z > 0.5)
                     {
-                        //TODO chech which hand is which? assume 0 = left
+                        //right hand grip release
                         if (userInfo.HandPointers[1].HandEventType == InteractionHandEventType.GripRelease)
                         {
-                            this._isInGrip = false;
-                            return GesturePartResult.Succeed;
-                        }
-                        else if (userInfo.HandPointers[1].HandEventType == InteractionHandEventType.Grip) //Grip was detected. ro remember it to the next frame and pause
-                        {
-                            this._isInGrip = true;
-                            return GesturePartResult.Pausing;
-                        }
-                        else if (this._isInGrip == true && userInfo.HandPointers[1].HandEventType == InteractionHandEventType.None) //Rlease after grip was detected
-                        {
-                            this._isInGrip = false;
                             return GesturePartResult.Succeed;
                         }
                         return GesturePartResult.Pausing;
@@ -66,9 +54,8 @@ namespace KinectAdapter.Fizbin.Gestures
 
         IRelativeGestureSegment[] ICompositeGesture.GetGestureSegments()
         {
-            IRelativeGestureSegment[] GripReleaseRightHand = new IRelativeGestureSegment[2];
+            IRelativeGestureSegment[] GripReleaseRightHand = new IRelativeGestureSegment[1];
             GripReleaseRightHand[0] = new GripReleaseRightHandSegment1();
-            GripReleaseRightHand[1] = new GripReleaseRightHandSegment1();
             return GripReleaseRightHand;
         }
     }

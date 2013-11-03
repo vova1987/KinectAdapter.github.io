@@ -6,7 +6,7 @@ using KinectAdapter.Fizbin.Gestures.Segments;
 
 namespace KinectAdapter.Fizbin.Gestures.Segments
 {
-    public class WaveLeftSegment0 : IRelativeGestureSegment
+    public class DownWaveLeftSegment0 : IRelativeGestureSegment
     {
         /// <summary>
         /// Checks the gesture.
@@ -15,12 +15,11 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
         /// <returns>GesturePartResult based on if the gesture part has been completed</returns>
         public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo UserInfo = null)
         {
-            // hand above elbow and left of head and below head
-            if (skeleton.Joints[JointType.HandLeft].Position.Y > skeleton.Joints[JointType.ElbowLeft].Position.Y
+            // hand below elbow and left of head and below head
+            if (skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.ElbowLeft].Position.Y
                 && skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.Head].Position.X
                 && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
             {
-
                     // right hand is gripped.
                     if (UserInfo.HandPointers[1].HandEventType == InteractionHandEventType.Grip)
                     {
@@ -36,7 +35,7 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
         }
     }
 
-    public class WaveLeftSegment1 : IRelativeGestureSegment
+    public class DownWaveLeftSegment1 : IRelativeGestureSegment
     {
         /// <summary>
         /// Checks the gesture.
@@ -45,8 +44,8 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
         /// <returns>GesturePartResult based on if the gesture part has been completed</returns>
         public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo UserInfo = null)
         {
-            // hand above elbow and left of head and below head
-            if (skeleton.Joints[JointType.HandLeft].Position.Y > skeleton.Joints[JointType.ElbowLeft].Position.Y
+            // hand below elbow and left of head and below head
+            if (skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.ElbowLeft].Position.Y
                 && skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.Head].Position.X
                 && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
             {
@@ -65,7 +64,7 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
         }
     }
 
-    public class WaveLeftSegment2 : IRelativeGestureSegment
+    public class DownWaveLeftSegment2 : IRelativeGestureSegment
     {
         /// <summary>
         /// Checks the gesture.
@@ -74,8 +73,8 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
         /// <returns>GesturePartResult based on if the gesture part has been completed</returns>
         public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo UserInfo = null)
         {
-            // hand above elbow and left of head and below head
-            if (skeleton.Joints[JointType.HandLeft].Position.Y > skeleton.Joints[JointType.ElbowLeft].Position.Y
+            // hand below elbow and left of head and below head
+            if (skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.ElbowLeft].Position.Y
                 && skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.Head].Position.X
                 && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
             {
@@ -98,21 +97,21 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
 
 namespace KinectAdapter.Fizbin.Gestures
 {
-    public class WaveLeftGesture : ICompositeGesture
+    public class DownWaveLeftGesture : ICompositeGesture
     {
 
         string ICompositeGesture.GetGestureName()
         {
-            return "WaveLeft";
+            return "DownWaveLeft";
         }
 
         IRelativeGestureSegment[] ICompositeGesture.GetGestureSegments()
         {
-            IRelativeGestureSegment[] waveLeftSegments = new IRelativeGestureSegment[3];
-            waveLeftSegments[0] = new WaveLeftSegment0();
-            waveLeftSegments[1] = new WaveLeftSegment1();
-            waveLeftSegments[2] = new WaveLeftSegment2();
-            return waveLeftSegments;
+            IRelativeGestureSegment[] downWaveLeftSegments = new IRelativeGestureSegment[3];
+            downWaveLeftSegments[0] = new DownWaveLeftSegment0();
+            downWaveLeftSegments[1] = new DownWaveLeftSegment1();
+            downWaveLeftSegments[2] = new DownWaveLeftSegment2();
+            return downWaveLeftSegments;
         }
     }
 }

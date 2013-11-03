@@ -33,6 +33,7 @@ namespace KinectAdapter.VoiceRecognition
         {
             _sensor = sensor;
             _choices = new Choices();
+            _choices.Add("dfdf");
             _recognizerInfo = SpeechRecognitionEngine.InstalledRecognizers()[0];
             
         }

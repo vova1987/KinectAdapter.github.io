@@ -15,8 +15,12 @@
     4. That's it! The new gesture will automatically be loaded and registerd in Runtime.
 -->
 <ArrayOfGestureCommandPair xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <GestureCommandPair>
+    <Gesture Type="Physical">PushBothForward</Gesture>
+    <Command Type="KbCommand">volume_mute</Command>
+  </GestureCommandPair>
   <GestureCommandPair>
-    <Gesture Type="Physical">BothSwipeDown</Gesture>
+    <Gesture Type="Physical">MinorSwipeDown</Gesture>
     <Command Type="KbCommand">PageDown</Command>
   </GestureCommandPair>
   <GestureCommandPair>
@@ -28,7 +32,7 @@
     <Command Type="KbCommand">next_track</Command>
   </GestureCommandPair>
   <GestureCommandPair>
-    <Gesture Type="Physical">BothSwipeUp</Gesture>
+    <Gesture Type="Physical">MinorSwipeUp</Gesture>
     <Command Type="KbCommand">PageUp</Command>
   </GestureCommandPair>
   <GestureCommandPair>
@@ -40,11 +44,11 @@
     <Command Type="KbCommand">right</Command>
   </GestureCommandPair>
   <GestureCommandPair>
-    <Gesture Type="Physical">MinorSwipeDown</Gesture>
+    <Gesture Type="Physical">DownWaveRight</Gesture>
     <Command Type="KbCommand">Down</Command>
   </GestureCommandPair>
   <GestureCommandPair>
-    <Gesture Type="Physical">MinorSwipeUp</Gesture>
+    <Gesture Type="Physical">DownWaveLeft</Gesture>
     <Command Type="KbCommand">Up</Command>
   </GestureCommandPair>
   <GestureCommandPair>
@@ -74,10 +78,6 @@
   <GestureCommandPair>
     <Gesture Type="Physical">GripReleaseLeftHand</Gesture>
     <Command Type="KbCommand">volume_down</Command>
-  </GestureCommandPair>
-  <GestureCommandPair>
-    <Gesture Type="Physical">GripReleaseBothHands</Gesture>
-    <Command Type="KbCommand">volume_mute</Command>
   </GestureCommandPair>
   <!-- Voice Commands -->
   <!--<GestureCommandPair>

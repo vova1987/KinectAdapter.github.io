@@ -70,17 +70,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Fizbin\AutoRegisteringGestureController.cs" />
-    <Compile Include="Fizbin\Gestures\Segments\GripReleaseBothHands.cs" />
+    <Compile Include="Fizbin\Gestures\Segments\PushBothForward.cs" />
+    <Compile Include="Fizbin\Gestures\Segments\DownWaveLeft.cs" />
+    <Compile Include="Fizbin\Gestures\Segments\DownWaveRight.cs" />
     <Compile Include="Fizbin\Gestures\Segments\GripReleaseLeftHand.cs" />
     <Compile Include="Fizbin\Gestures\Segments\GripReleaseRightHand.cs" />
     <Compile Include="Fizbin\Gestures\Segments\CircleRightHand.cs" />
     <Compile Include="Fizbin\Gestures\Segments\WaveLeft.cs" />
     <Compile Include="Fizbin\Gestures\Segments\WaveRight.cs" />
     <Compile Include="Interfaces\ICompositeGesture.cs" />
-    <Compile Include="Fizbin\Gestures\Segments\BothSwipeDown.cs" />
     <Compile Include="Fizbin\Gestures\Segments\BothSwipeLeft.cs" />
     <Compile Include="Fizbin\Gestures\Segments\BothSwipeRight.cs" />
-    <Compile Include="Fizbin\Gestures\Segments\BothSwipeUp.cs" />
     <Compile Include="Fizbin\Gestures\Segments\MinorSwipeDown.cs" />
     <Compile Include="Fizbin\Gestures\Segments\MinorSwipeUp.cs" />
     <Compile Include="Fizbin\Gestures\Segments\PushLeftForward.cs" />
