@@ -9,38 +9,8 @@ using KinectAdapter.Fizbin.Gestures.Segments;
 
 namespace KinectAdapter.Fizbin.Gestures.Segments
 {
-    public class PushRightForwardSegment1 : IRelativeGestureSegment
-    {
-         /// <summary>
-        /// Checks the gesture.
-        /// </summary>
-        /// <param name="skeleton">The skeleton.</param>
-        /// <returns>GesturePartResult based on if the gesture part has been completed</returns>
-        public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo userInfo)
-        {
 
-            // right hand between shoulders. left is not
-            if (skeleton.Joints[JointType.HandRight].Position.X < skeleton.Joints[JointType.ShoulderRight].Position.X
-                && skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ShoulderLeft].Position.X
-                && skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.ShoulderLeft].Position.X)
-            {
-                // right hand below head height
-                if (skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.Head].Position.Y )
-                {
-                    // right hand close to center of shoulders in the z axis
-                    if (skeleton.Joints[JointType.ShoulderCenter].Position.Z - skeleton.Joints[JointType.HandRight].Position.Z < 0.3)
-                    {
-                        return GesturePartResult.Succeed;
-                    }
-                    return GesturePartResult.Fail;
-                }
-                return GesturePartResult.Fail;
-            }
-            return GesturePartResult.Fail;
-        }
-    }
-
-    public class PushRightForwardSegment2 : IRelativeGestureSegment
+    public class PushRightForwardSegment0 : IRelativeGestureSegment
     {
         /// <summary>
         /// Checks the gesture.
@@ -50,27 +20,15 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
         public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo userInfo)
         {
 
-            // right hand between shoulders. left is not
-            if (skeleton.Joints[JointType.HandRight].Position.X < skeleton.Joints[JointType.ShoulderRight].Position.X
-                && skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ShoulderLeft].Position.X
-                && skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.ShoulderLeft].Position.X)
+            // right hand is pressed and to the right of right shoulder
+            if (userInfo.HandPointers[1].IsPressed
+                && skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ShoulderRight].Position.X)
             {
-                // right hand below head height.
-                if (skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
-                {
-                    // right hand far from center of shoulders in the z axis
-                    if (skeleton.Joints[JointType.ShoulderCenter].Position.Z - skeleton.Joints[JointType.HandRight].Position.Z > 0.5)
-                    {
-                        return GesturePartResult.Succeed;
-                    }
-                    return GesturePartResult.Pausing;
-                }
-                return GesturePartResult.Fail;
+                return GesturePartResult.Succeed;
             }
             return GesturePartResult.Fail;
         }
     }
-    
 }
 
 namespace KinectAdapter.Fizbin.Gestures
@@ -85,9 +43,8 @@ namespace KinectAdapter.Fizbin.Gestures
 
         IRelativeGestureSegment[] ICompositeGesture.GetGestureSegments()
         {
-            IRelativeGestureSegment[] pushRightForwardSegments = new IRelativeGestureSegment[2];
-            pushRightForwardSegments[0] = new PushRightForwardSegment1();
-            pushRightForwardSegments[1] = new PushRightForwardSegment2();
+            IRelativeGestureSegment[] pushRightForwardSegments = new IRelativeGestureSegment[1];
+            pushRightForwardSegments[0] = new PushRightForwardSegment0();
             return pushRightForwardSegments;
         }
     }

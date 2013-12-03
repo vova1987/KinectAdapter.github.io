@@ -21,7 +21,7 @@
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">MinorSwipeDown</Gesture>
-    <Command Type="KbCommand">PageDown</Command>
+    <Command Type="KbCommand">down</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">BothSwipeLeft</Gesture>
@@ -33,7 +33,7 @@
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">MinorSwipeUp</Gesture>
-    <Command Type="KbCommand">PageUp</Command>
+    <Command Type="KbCommand">up</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">WaveLeft</Gesture>
@@ -44,14 +44,6 @@
     <Command Type="KbCommand">right</Command>
   </GestureCommandPair>
   <GestureCommandPair>
-    <Gesture Type="Physical">DownWaveRight</Gesture>
-    <Command Type="KbCommand">Down</Command>
-  </GestureCommandPair>
-  <GestureCommandPair>
-    <Gesture Type="Physical">DownWaveLeft</Gesture>
-    <Command Type="KbCommand">Up</Command>
-  </GestureCommandPair>
-  <GestureCommandPair>
     <Gesture Type="Physical">PushLeftForward</Gesture>
     <Command Type="KbCommand">esc</Command>
   </GestureCommandPair>
@@ -60,16 +52,16 @@
     <Command Type="KbCommand">enter</Command>
   </GestureCommandPair>
   <GestureCommandPair>
+    <Gesture Type="Physical">SwipeUp</Gesture>
+    <Command Type="KbCommand">PageUp</Command>
+  </GestureCommandPair>
+  <GestureCommandPair>
+    <Gesture Type="Physical">SwipeDown</Gesture>
+    <Command Type="KbCommand">PageDown</Command>
+  </GestureCommandPair>
+  <GestureCommandPair>
     <Gesture Type="Physical">RightHandCircleHead</Gesture>
     <Command Type="KbCommand">stop</Command>
-  </GestureCommandPair>
-  <GestureCommandPair>
-    <Gesture Type="Physical">SwipeLeft</Gesture>
-    <Command Type="KbCommand">r</Command>
-  </GestureCommandPair>
-  <GestureCommandPair>
-    <Gesture Type="Physical">SwipeRight</Gesture>
-    <Command Type="KbCommand">f</Command>
   </GestureCommandPair>
   <GestureCommandPair>
     <Gesture Type="Physical">GripReleaseRightHand</Gesture>
@@ -79,16 +71,16 @@
     <Gesture Type="Physical">GripReleaseLeftHand</Gesture>
     <Command Type="KbCommand">volume_down</Command>
   </GestureCommandPair>
-  <!-- Voice Commands -->
+   <!--Voice Commands--> 
   <!--<GestureCommandPair>
     <Gesture Type="Voice">Play</Gesture>
     <Command Type="KbCommand">p</Command>
-  </GestureCommandPair>
+  </GestureCommandPair>-->
   <GestureCommandPair>
     <Gesture Type="Voice">Stop</Gesture>
     <Command Type="KbCommand">stop</Command>
   </GestureCommandPair>
-  <GestureCommandPair>
+  <!--<GestureCommandPair>
     <Gesture Type="Voice">Pictures</Gesture>
     <Command Type="ActionCommand">pictures</Command>
   </GestureCommandPair>

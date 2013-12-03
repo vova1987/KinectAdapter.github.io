@@ -120,6 +120,7 @@ namespace KinectAdapter.PhysicalRecognition
 
                 iaf.CopyInteractionDataTo(_userInfos);
             }
+            var lastSkeleton = _skeletons.Where((s) => s.TrackingState != SkeletonTrackingState.NotTracked).LastOrDefault(); 
             foreach (var userInfo in _userInfos)
             {
                 var userID = userInfo.SkeletonTrackingId;
@@ -127,12 +128,12 @@ namespace KinectAdapter.PhysicalRecognition
                     continue;
                 //Update with all skeletons and current user info
                 //Currently use last valid skeleton
-                var lastSkeleton = _skeletons.Where((s) => s.TrackingState != SkeletonTrackingState.NotTracked).Last(); 
+                
                 gestureController.UpdateAllGestures(lastSkeleton, userInfo);
                 
             }
             if (DEBUG)
-                GenerateDump(_userInfos);
+                GenerateDump(_userInfos,lastSkeleton);
         }
         #endregion
 
@@ -159,7 +160,7 @@ namespace KinectAdapter.PhysicalRecognition
 
         #region debugging
 
-        private void GenerateDump(UserInfo[] _userInfos)
+        private void GenerateDump(UserInfo[] _userInfos, Skeleton skeleton)
         {
             StringBuilder dump = new StringBuilder();
 
@@ -206,6 +207,8 @@ namespace KinectAdapter.PhysicalRecognition
                         dump.AppendLine("    RawX: " + hand.RawX.ToString("N3"));
                         dump.AppendLine("    RawY: " + hand.RawY.ToString("N3"));
                         dump.AppendLine("    RawZ: " + hand.RawZ.ToString("N3"));
+                        dump.AppendLine("X Shoulder-Elbow Distance (Left): " + (skeleton.Joints[JointType.ElbowLeft].Position.X - skeleton.Joints[JointType.ShoulderLeft].Position.X));
+                        dump.AppendLine("Y Hand-Elbow Distance: " + (skeleton.Joints[JointType.HandLeft].Position.Y - skeleton.Joints[JointType.ElbowLeft].Position.Y));
                     }
                 }
 

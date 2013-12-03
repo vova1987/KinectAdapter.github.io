@@ -6,35 +6,6 @@ using KinectAdapter.Fizbin.Gestures.Segments;
 
 namespace KinectAdapter.Fizbin.Gestures.Segments
 {
-    public class WaveLeftSegment0 : IRelativeGestureSegment
-    {
-        /// <summary>
-        /// Checks the gesture.
-        /// </summary>
-        /// <param name="skeleton">The skeleton.</param>
-        /// <returns>GesturePartResult based on if the gesture part has been completed</returns>
-        public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo UserInfo = null)
-        {
-            // hand above elbow and left of head and below head
-            if (skeleton.Joints[JointType.HandLeft].Position.Y > skeleton.Joints[JointType.ElbowLeft].Position.Y
-                && skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.Head].Position.X
-                && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
-            {
-
-                    // right hand is gripped.
-                    if (UserInfo.HandPointers[1].HandEventType == InteractionHandEventType.Grip)
-                    {
-                        return GesturePartResult.Succeed;
-                    }
-
-                // hand has not dropped but is not quite where we expect it to be, pausing till next frame
-                return GesturePartResult.Pausing;
-            }
-
-            // hand dropped - no gesture fails
-            return GesturePartResult.Fail;
-        }
-    }
 
     public class WaveLeftSegment1 : IRelativeGestureSegment
     {
@@ -45,22 +16,26 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
         /// <returns>GesturePartResult based on if the gesture part has been completed</returns>
         public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo UserInfo = null)
         {
-            // hand above elbow and left of head and below head
-            if (skeleton.Joints[JointType.HandLeft].Position.Y > skeleton.Joints[JointType.ElbowLeft].Position.Y
-                && skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.Head].Position.X
-                && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
+            //left elbow is aporx. left of left shoulder
+            if (skeleton.Joints[JointType.ElbowLeft].Position.X - skeleton.Joints[JointType.ShoulderLeft].Position.X < -0.1)
             {
-                // hand right of elbow
-                if (skeleton.Joints[JointType.HandLeft].Position.X > skeleton.Joints[JointType.ElbowLeft].Position.X)
+                // hand above elbow and left of head
+                if (skeleton.Joints[JointType.HandLeft].Position.Y > skeleton.Joints[JointType.ElbowLeft].Position.Y
+                    && skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.Head].Position.X)
                 {
-                    return GesturePartResult.Succeed;
+                    // hand right of elbow
+                    if (skeleton.Joints[JointType.HandLeft].Position.X - skeleton.Joints[JointType.ElbowLeft].Position.X > 0.065)
+                    {
+                        return GesturePartResult.Succeed;
+                    }
+
+                    // hand has not dropped but is not quite where we expect it to be, pausing till next frame
+                    return GesturePartResult.Pausing;
                 }
 
-                // hand has not dropped but is not quite where we expect it to be, pausing till next frame
-                return GesturePartResult.Pausing;
+                // hand dropped - no gesture fails
+                return GesturePartResult.Fail;
             }
-
-            // hand dropped - no gesture fails
             return GesturePartResult.Fail;
         }
     }
@@ -74,22 +49,26 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
         /// <returns>GesturePartResult based on if the gesture part has been completed</returns>
         public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo UserInfo = null)
         {
-            // hand above elbow and left of head and below head
-            if (skeleton.Joints[JointType.HandLeft].Position.Y > skeleton.Joints[JointType.ElbowLeft].Position.Y
-                && skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.Head].Position.X
-                && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
+            //left elbow is aporx. left of left shoulder
+            if (skeleton.Joints[JointType.ElbowLeft].Position.X - skeleton.Joints[JointType.ShoulderLeft].Position.X < -0.1)
             {
-                // hand left of elbow and left shoulder
-                if (skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.ElbowLeft].Position.X)
+                // hand above elbow and left of head
+                if (skeleton.Joints[JointType.HandLeft].Position.Y > skeleton.Joints[JointType.ElbowLeft].Position.Y
+                    && skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.Head].Position.X)
                 {
-                    return GesturePartResult.Succeed;
+                    // hand left of elbow and left shoulder
+                    if (skeleton.Joints[JointType.HandLeft].Position.X - skeleton.Joints[JointType.ElbowLeft].Position.X < -0.065)
+                    {
+                        return GesturePartResult.Succeed;
+                    }
+
+                    // hand has not dropped but is not quite where we expect it to be, pausing till next frame
+                    return GesturePartResult.Pausing;
                 }
 
-                // hand has not dropped but is not quite where we expect it to be, pausing till next frame
-                return GesturePartResult.Pausing;
+                // hand dropped - no gesture fails
+                return GesturePartResult.Fail;
             }
-
-            // hand dropped - no gesture fails
             return GesturePartResult.Fail;
         }
     }
@@ -109,9 +88,9 @@ namespace KinectAdapter.Fizbin.Gestures
         IRelativeGestureSegment[] ICompositeGesture.GetGestureSegments()
         {
             IRelativeGestureSegment[] waveLeftSegments = new IRelativeGestureSegment[3];
-            waveLeftSegments[0] = new WaveLeftSegment0();
-            waveLeftSegments[1] = new WaveLeftSegment1();
-            waveLeftSegments[2] = new WaveLeftSegment2();
+            waveLeftSegments[0] = new WaveLeftSegment1();
+            waveLeftSegments[1] = new WaveLeftSegment2();
+            waveLeftSegments[2] = new WaveLeftSegment1();
             return waveLeftSegments;
         }
     }

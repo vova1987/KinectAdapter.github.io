@@ -71,11 +71,11 @@
     </ApplicationDefinition>
     <Compile Include="Fizbin\AutoRegisteringGestureController.cs" />
     <Compile Include="Fizbin\Gestures\Segments\PushBothForward.cs" />
-    <Compile Include="Fizbin\Gestures\Segments\DownWaveLeft.cs" />
-    <Compile Include="Fizbin\Gestures\Segments\DownWaveRight.cs" />
     <Compile Include="Fizbin\Gestures\Segments\GripReleaseLeftHand.cs" />
     <Compile Include="Fizbin\Gestures\Segments\GripReleaseRightHand.cs" />
     <Compile Include="Fizbin\Gestures\Segments\CircleRightHand.cs" />
+    <Compile Include="Fizbin\Gestures\Segments\SwipeDown.cs" />
+    <Compile Include="Fizbin\Gestures\Segments\SwipeUp.cs" />
     <Compile Include="Fizbin\Gestures\Segments\WaveLeft.cs" />
     <Compile Include="Fizbin\Gestures\Segments\WaveRight.cs" />
     <Compile Include="Interfaces\ICompositeGesture.cs" />
@@ -88,7 +88,6 @@
     <Compile Include="Fizbin\Gestures\Segments\SwipeLeft.cs" />
     <Compile Include="Fizbin\Gestures\Segments\SwipeRight.cs" />
     <Compile Include="KinectSensorArgs.cs" />
-    <Compile Include="PhysicalRecognition\PhysicsStream.cs" />
     <Compile Include="PhysicalRecognition\InteractiveGestureDetector.cs" />
     <Compile Include="UserWindow.xaml.cs">
       <DependentUpon>UserWindow.xaml</DependentUpon>

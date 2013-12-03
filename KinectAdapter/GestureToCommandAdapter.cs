@@ -6,6 +6,7 @@ using KinectAdapter.Interfaces;
 using System.Xml.Serialization;
 using KinectAdapter.Models;
 using System.IO;
+using System.Windows;
 
 namespace KinectAdapter
 {
@@ -22,10 +23,10 @@ namespace KinectAdapter
         Dictionary<string, IList<XbmcCommand>> _gestureToCommandMap;
         #endregion
 
-        //For debugging
-        public static readonly bool ShowNotification = true;
+        //If true, send message on each detection of a gesture
+        public bool ShowNotification { get; set; }
 
-        public GestureToCommandAdapter(string GestureFilePath,ICommandSender sender, params IGestureDetector[] detectors )
+        public GestureToCommandAdapter(string GestureFilePath,ICommandSender sender, params IGestureDetector[] detectors)
         {
             _commandSender = sender;
             _gestureDetectors = detectors;

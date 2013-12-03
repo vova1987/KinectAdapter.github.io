@@ -3,6 +3,7 @@ using System.Diagnostics;
 using Fizbin.Kinect.Gestures;
 using Microsoft.Kinect.Toolkit.Interaction;
 using KinectAdapter.Fizbin.Gestures.Segments;
+using System;
 
 namespace KinectAdapter.Fizbin.Gestures.Segments
 {
@@ -19,20 +20,19 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
         public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo userInfo)
         {
 
-            // right hand above head. left hand is not.
-            if (skeleton.Joints[JointType.HandRight].Position.Y > skeleton.Joints[JointType.Head].Position.Y
-                && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
+            //left elbow is aporx. left of left shoulder
+            if (skeleton.Joints[JointType.ElbowRight].Position.X - skeleton.Joints[JointType.ShoulderRight].Position.X > 0.1)
             {
                 // right hand is right to the shoulder center and head.
                 if (skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.Head].Position.X
                     && skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ShoulderCenter].Position.X)
                 {
-                    // right hand is gripped.
-                    if (userInfo.HandPointers[1].HandEventType == InteractionHandEventType.Grip)
+                    // right hand below right elbow 
+                    if (skeleton.Joints[JointType.HandRight].Position.Y - skeleton.Joints[JointType.ElbowRight].Position.Y < -0.05)
                     {
                         return GesturePartResult.Succeed;
                     }
-                    return GesturePartResult.Fail;
+                    return GesturePartResult.Pausing;
                 }
                 return GesturePartResult.Fail;
             }
@@ -52,16 +52,24 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
         /// <returns>GesturePartResult based on if the gesture part has been completed</returns>
         public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo userInfo)
         {
-            // right hand is right to the shoulder center and head.
-            if (skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.Head].Position.X
-                && skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ShoulderCenter].Position.X)
+            //left elbow is aporx. left of left shoulder
+            if (skeleton.Joints[JointType.ElbowRight].Position.X - skeleton.Joints[JointType.ShoulderRight].Position.X > 0.1)
             {
-                // right hand below head
-                if (skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
+                // right hand right of head and shoulder center
+                if (skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.Head].Position.X
+                    && skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ShoulderCenter].Position.X)
                 {
-                    return GesturePartResult.Succeed;
+                    //right hand above right elbow
+                    if (skeleton.Joints[JointType.HandRight].Position.Y - skeleton.Joints[JointType.ElbowRight].Position.Y > 0.05)
+                    {
+                        return GesturePartResult.Succeed;
+                    }
+                    else
+                    {
+                        return GesturePartResult.Pausing;
+                    }
                 }
-                return GesturePartResult.Pausing;
+                return GesturePartResult.Fail;
             }
             return GesturePartResult.Fail;
         }
@@ -81,9 +89,10 @@ namespace KinectAdapter.Fizbin.Gestures
 
         IRelativeGestureSegment[] ICompositeGesture.GetGestureSegments()
         {
-            IRelativeGestureSegment[] minorSwipeDownSegments = new IRelativeGestureSegment[2];
-            minorSwipeDownSegments[0] = new MinorSwipeDownSegment1();
-            minorSwipeDownSegments[1] = new MinorSwipeDownSegment2();
+            IRelativeGestureSegment[] minorSwipeDownSegments = new IRelativeGestureSegment[3];
+            minorSwipeDownSegments[0] = new MinorSwipeDownSegment2();
+            minorSwipeDownSegments[1] = new MinorSwipeDownSegment1();
+            minorSwipeDownSegments[2] = new MinorSwipeDownSegment2();
             return minorSwipeDownSegments;
         }
     }
