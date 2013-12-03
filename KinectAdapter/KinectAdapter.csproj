@@ -87,14 +87,19 @@
     <Compile Include="Fizbin\Gestures\Segments\PushRightForward.cs" />
     <Compile Include="Fizbin\Gestures\Segments\SwipeLeft.cs" />
     <Compile Include="Fizbin\Gestures\Segments\SwipeRight.cs" />
+    <Compile Include="KinectSensorArgs.cs" />
+    <Compile Include="PhysicalRecognition\PhysicsStream.cs" />
     <Compile Include="PhysicalRecognition\InteractiveGestureDetector.cs" />
+    <Compile Include="UserWindow.xaml.cs">
+      <DependentUpon>UserWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VoiceRecognition\KinectVoiceGestureDetector.cs" />
     <Compile Include="XBMC\XbmcCommandSender.cs" />
     <Page Include="KinectChooserEx.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="DebugWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -110,10 +115,14 @@
     <Compile Include="KinectChooserEx.xaml.cs">
       <DependentUpon>KinectChooserEx.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="DebugWindow.xaml.cs">
+      <DependentUpon>DebugWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\GestureToCommandPair.cs" />
@@ -153,12 +162,17 @@
     </Content>
     <Content Include="GestureToCommand.XML">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

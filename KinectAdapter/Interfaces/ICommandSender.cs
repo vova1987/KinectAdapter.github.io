@@ -20,4 +20,20 @@ namespace KinectAdapter.Interfaces
         /// <param name="ActionId">The ActionId of the command</param>
         void SendNotification(string caption, string actionId);
     }
+
+    public interface INotifybleCommandSender : ICommandSender
+    {
+        event EventHandler<CommandSenderEventArgs> CommandSenderStatusChanged;
+    }
+
+    public class CommandSenderEventArgs : EventArgs
+    {
+        public CommandSenderEventArgs(bool isConnected)
+            : base()
+        {
+            Connected = isConnected;
+        }
+
+        public bool Connected { get; set; }
+    }
 }

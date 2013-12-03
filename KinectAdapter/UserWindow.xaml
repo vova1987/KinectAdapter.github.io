@@ -1,0 +1,31 @@
+﻿<Window x:Class="KinectAdapter.UserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:k="http://schemas.microsoft.com/kinect/2013"
+        xmlns:kinectChooserEx="clr-namespace:KinectAdapter"
+        Title="KinectAdapter Monitor" Height="500" Width="405" WindowState="Minimized">
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"></RowDefinition>
+            <RowDefinition Height="161"></RowDefinition>
+            <RowDefinition Height="180*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <kinectChooserEx:KinectChooserEx x:Name="kinectChooserEx" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0"/>
+        <Label Content="Kinect Status: " Grid.Row="1" Height="30" HorizontalAlignment="Left" Margin="5,10,0,0" Name="label1" VerticalAlignment="Top" Width="108" FontSize="16" />
+        <Label Content="XBMC Status: " Height="30" HorizontalAlignment="Left" Margin="5,46,0,0" Name="label2" VerticalAlignment="Top" Grid.Row="1" FontSize="16" Width="108" />
+        <TextBox IsReadOnly="True"  Grid.Row="1" Height="30" HorizontalAlignment="Stretch" Margin="119,10,10,0" Name="kinectStatusText" VerticalAlignment="Top" Text="Connecting..." FontSize="16" />
+        <TextBox IsReadOnly="True" Grid.Row="1" Height="30" HorizontalAlignment="Stretch" Margin="119,46,10,0" Name="XbmcStatusText" VerticalAlignment="Top" Text="Connecting..." FontSize="16" />
+        <Label Content="User Status:" Grid.Row="1" Height="30" HorizontalAlignment="Left" Margin="5,82,0,0" Name="label3" VerticalAlignment="Top" Width="108" FontSize="16" />
+        <TextBox IsReadOnly="True" Grid.Row="1" Height="30" HorizontalAlignment="Stretch" Margin="119,82,10,0" Name="UserStatusText" VerticalAlignment="Top" Text="Connecting..." FontSize="16" />
+        <DataGrid ItemsSource="{Binding GestureList}" FontSize="16"  AutoGenerateColumns="False" Grid.Row="2" Margin="10,5,10,5" Name="GestureTable" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"   >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Gesture" Binding="{Binding Path=Gesture.GestureId}" MinWidth="120" />
+                <DataGridTextColumn Header="Command" Binding="{Binding Path=Command.CommandId}" MinWidth="120"/>
+                <DataGridTextColumn Header="Type"    Binding="{Binding Path=Gesture.GestureType}" MinWidth="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Last Gesture:" Height="30" HorizontalAlignment="Left" Margin="5,116,0,0" Name="label4" VerticalAlignment="Top" Width="108" Grid.Row="1" FontSize="16" />
+        <TextBox Height="30" IsReadOnly="True" HorizontalAlignment="Stretch" Margin="119,118,12,0" Name="textBox1" Text="{Binding LastDetectedGesture}" VerticalAlignment="Top" Grid.Row="1" FontSize="16" Grid.RowSpan="2" />
+    </Grid>
+</Window>

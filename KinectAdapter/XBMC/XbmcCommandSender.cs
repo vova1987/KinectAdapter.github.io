@@ -9,7 +9,7 @@ using KinectAdapter.Models;
 
 namespace KinectAdapter.XBMC
 {
-    public class XbmcCommandSender : ICommandSender
+    public class XbmcCommandSender : INotifybleCommandSender
     {
         #region XBMC Defaults
 
@@ -24,6 +24,8 @@ namespace KinectAdapter.XBMC
         private string _host;
         private int _port;
         #endregion
+
+
 
         public XbmcCommandSender(string host = XbmcDefaultHost, int UdpPort = XbmcDefaultUdpPort)
         {
@@ -51,10 +53,12 @@ namespace KinectAdapter.XBMC
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Exception occcured when trying to connect with XBMC Client: " + ex.Message);
+                Debug.WriteLine("Exception reoccurred when trying to connect with XBMC Client: " + ex.Message);
                 Debug.WriteLine(ex.StackTrace);
-                Debug.WriteLine("Failed to connect to XBMC. A retry wiull be made on each command send attemp");
+                Debug.WriteLine("Failed to connect to XBMC. A retry will be made on each command send attempt");
             }
+            if (CommandSenderStatusChanged != null)
+                CommandSenderStatusChanged(this,new CommandSenderEventArgs(success));
             return success;
         }
 
@@ -92,8 +96,16 @@ namespace KinectAdapter.XBMC
         /// <param name="actionId"></param>
         void ICommandSender.SendNotification(string caption, string actionId)
         {
+            if (!_eventClient.Connected && !Initialize(_host, _port))
+            {
+                Debug.WriteLine("XBMC Disconnected. Command will not be sent!");
+                return;
+            }
             _eventClient.SendNotification(caption, actionId);
         }
+
+        public event EventHandler<CommandSenderEventArgs> CommandSenderStatusChanged;
+
 
         #endregion
 

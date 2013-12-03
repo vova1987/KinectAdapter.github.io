@@ -14,6 +14,22 @@ namespace KinectAdapter
     /// </summary>
     public partial class App : Application
     {
-        
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            if (e.Args.Contains("/debug"))
+            {
+                StartupUri = new Uri("DebugWindow.xaml",
+                        UriKind.Relative);
+            }
+            else
+            {
+                StartupUri = new Uri("UserWindow.xaml",
+                        UriKind.Relative);
+            }
+
+            
+        }
     }
 }

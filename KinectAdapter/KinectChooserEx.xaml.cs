@@ -25,7 +25,11 @@ namespace KinectAdapter
     public partial class KinectChooserEx : UserControl
     {
         private KinectSensorChooser sensorChooser;
-
+        
+        /// <summary>
+        /// Called when sensor is available
+        /// </summary>
+        public event EventHandler<KinectSensorArgs> KinectChanged;
 
         public KinectChooserEx()
         {
@@ -111,7 +115,7 @@ namespace KinectAdapter
 
         // Using a DependencyProperty as the backing store for NearMode.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty NearModeProperty =
-            DependencyProperty.Register("NearMode", typeof(bool), typeof(KinectChooserEx), new PropertyMetadata(true, NearModePropertyChangedCallback));
+            DependencyProperty.Register("NearMode", typeof(bool), typeof(KinectChooserEx), new PropertyMetadata(false, NearModePropertyChangedCallback));
 
         private static void NearModePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
@@ -130,9 +134,19 @@ namespace KinectAdapter
         {
             if (KinectSensor == null)
                 return;
-
-            KinectSensor.DepthStream.Range = NearMode ? DepthRange.Near : DepthRange.Default;
-            KinectSensor.SkeletonStream.EnableTrackingInNearRange = NearMode;
+            try
+            {
+                KinectSensor.DepthStream.Range = NearMode ? DepthRange.Near : DepthRange.Default;
+                KinectSensor.SkeletonStream.EnableTrackingInNearRange = NearMode;
+            }
+            catch (Exception ex)
+            {
+                NearMode = false;
+                //ON old sensors, near mode is not supported...
+                KinectSensor.DepthStream.Range = DepthRange.Default;
+                KinectSensor.SkeletonStream.EnableTrackingInNearRange = NearMode;
+            }
+            
         }
 
         /// <summary>
@@ -155,6 +169,19 @@ namespace KinectAdapter
 
         private void KinectSensorChanged()
         {
+            if (KinectChanged != null && KinectSensor!=null)
+                this.KinectChanged(this, new KinectSensorArgs(KinectSensor));
         }
+    }
+
+
+    public class KinectSensorArgs : EventArgs
+    {
+        public KinectSensorArgs(KinectSensor sensor) : base()
+        {
+            Sensor = sensor;
+        }
+
+        public KinectSensor Sensor { get; set; }
     }
 }

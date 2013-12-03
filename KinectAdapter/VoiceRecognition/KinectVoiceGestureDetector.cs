@@ -31,11 +31,7 @@ namespace KinectAdapter.VoiceRecognition
         /// <param name="sensor"></param>
         public KinectVoiceGestureDetector(KinectSensor sensor)
         {
-            _sensor = sensor;
-            _choices = new Choices();
-            _choices.Add("dfdf");
-            _recognizerInfo = SpeechRecognitionEngine.InstalledRecognizers()[0];
-            
+            _sensor = sensor; 
         }
 
         /// <summary>
@@ -118,10 +114,16 @@ namespace KinectAdapter.VoiceRecognition
         public void RegisterGestures(IEnumerable<KinectGesture> gestures)
         {
             //Add all voice gestures
-            foreach (var ges in gestures.Where((g)=>g.GestureType == Models.GestureType.Voice))
-                _choices.Add(ges.GestureId);
-            //After registering, Build the Speech Engine
-            BuildSpeechEngine(_recognizerInfo);
+            if (gestures.Count() > 0)
+            {
+                _choices = new Choices();
+                foreach (var ges in gestures.Where((g) => g.GestureType == Models.GestureType.Voice))
+                    _choices.Add(ges.GestureId);
+                _recognizerInfo = SpeechRecognitionEngine.InstalledRecognizers()[0];
+                //After registering, Build the Speech Engine
+                BuildSpeechEngine(_recognizerInfo);
+            }
+            
         }
         #endregion
 
