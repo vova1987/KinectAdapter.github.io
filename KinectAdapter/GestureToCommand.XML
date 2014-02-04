@@ -15,12 +15,20 @@
     4. That's it! The new gesture will automatically be loaded and registerd in Runtime.
 -->
 <ArrayOfGestureCommandPair xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <GestureCommandPair>
-    <Gesture Type="Physical">PushBothForward</Gesture>
+  <GestureCommandPair>
+    <Gesture Type="Physical">SwipeLeft</Gesture>
+    <Command Type="KbCommand">r</Command>
+  </GestureCommandPair>
+  <GestureCommandPair>
+    <Gesture Type="Physical">SwipeRight</Gesture>
+    <Command Type="KbCommand">f</Command>
+  </GestureCommandPair>
+  <GestureCommandPair>
+    <Gesture Type="Physical">LeftHandCircleHead</Gesture>
     <Command Type="KbCommand">volume_mute</Command>
   </GestureCommandPair>
   <GestureCommandPair>
-    <Gesture Type="Physical">MinorSwipeDown</Gesture>
+    <Gesture Type="Physical">ShakeRightHand</Gesture>
     <Command Type="KbCommand">down</Command>
   </GestureCommandPair>
   <GestureCommandPair>
@@ -32,7 +40,7 @@
     <Command Type="KbCommand">next_track</Command>
   </GestureCommandPair>
   <GestureCommandPair>
-    <Gesture Type="Physical">MinorSwipeUp</Gesture>
+    <Gesture Type="Physical">ShakeLeftHand</Gesture>
     <Command Type="KbCommand">up</Command>
   </GestureCommandPair>
   <GestureCommandPair>
@@ -52,11 +60,11 @@
     <Command Type="KbCommand">enter</Command>
   </GestureCommandPair>
   <GestureCommandPair>
-    <Gesture Type="Physical">SwipeUp</Gesture>
+    <Gesture Type="Physical">SwipeDownLeftHand</Gesture>
     <Command Type="KbCommand">PageUp</Command>
   </GestureCommandPair>
   <GestureCommandPair>
-    <Gesture Type="Physical">SwipeDown</Gesture>
+    <Gesture Type="Physical">SwipeDownRightHand</Gesture>
     <Command Type="KbCommand">PageDown</Command>
   </GestureCommandPair>
   <GestureCommandPair>
@@ -76,10 +84,10 @@
     <Gesture Type="Voice">Play</Gesture>
     <Command Type="KbCommand">p</Command>
   </GestureCommandPair>-->
-  <GestureCommandPair>
+  <!--<GestureCommandPair>
     <Gesture Type="Voice">Stop</Gesture>
     <Command Type="KbCommand">stop</Command>
-  </GestureCommandPair>
+  </GestureCommandPair>-->
   <!--<GestureCommandPair>
     <Gesture Type="Voice">Pictures</Gesture>
     <Command Type="ActionCommand">pictures</Command>

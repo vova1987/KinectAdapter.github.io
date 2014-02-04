@@ -29,7 +29,26 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
             return GesturePartResult.Fail;
         }
     }
-    
+
+    public class PushLeftForwardSegment1 : IRelativeGestureSegment
+    {
+        /// <summary>
+        /// Checks the gesture.
+        /// </summary>
+        /// <param name="skeleton">The skeleton.</param>
+        /// <returns>GesturePartResult based on if the gesture part has been completed</returns>
+        public GesturePartResult CheckGesture(Skeleton skeleton, UserInfo userInfo)
+        {
+
+            // left hand is not pressed and to the left of left shoulder
+            if (!userInfo.HandPointers[0].IsPressed
+                && skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.ShoulderLeft].Position.X)
+            {
+                return GesturePartResult.Succeed;
+            }
+            return GesturePartResult.Pausing;
+        }
+    }
 }
 
 namespace KinectAdapter.Fizbin.Gestures
@@ -44,8 +63,9 @@ namespace KinectAdapter.Fizbin.Gestures
 
         IRelativeGestureSegment[] ICompositeGesture.GetGestureSegments()
         {
-            IRelativeGestureSegment[] pushLeftForwardSegments = new IRelativeGestureSegment[1];
+            IRelativeGestureSegment[] pushLeftForwardSegments = new IRelativeGestureSegment[2];
             pushLeftForwardSegments[0] = new PushLeftForwardSegment0();
+            pushLeftForwardSegments[1] = new PushLeftForwardSegment1();
             return pushLeftForwardSegments;
         }
     }

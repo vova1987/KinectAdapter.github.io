@@ -10,7 +10,7 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
     /// <summary>
     /// The first part of the swipe down gesture with the right hand
     /// </summary>
-    public class SwipeUpSegment1 : IRelativeGestureSegment
+    public class SwipeDownLeftHandSegment1 : IRelativeGestureSegment
     {
         /// <summary>
         /// Checks the gesture.
@@ -38,7 +38,7 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
     /// <summary>
     /// The second part of the swipe down gesture for the right hand
     /// </summary>
-    public class SwipeUpSegment2 : IRelativeGestureSegment
+    public class SwipeDownLeftHandSegment2 : IRelativeGestureSegment
     {
         /// <summary>
         /// Checks the gesture.
@@ -65,20 +65,20 @@ namespace KinectAdapter.Fizbin.Gestures.Segments
 
 namespace KinectAdapter.Fizbin.Gestures
 {
-    public class SwipeUpGesture : ICompositeGesture
+    public class SwipeDownLeftHandGesture : ICompositeGesture
     {
 
         string ICompositeGesture.GetGestureName()
         {
-            return "SwipeUp";
+            return "SwipeDownLeftHand";
         }
 
         IRelativeGestureSegment[] ICompositeGesture.GetGestureSegments()
         {
-            IRelativeGestureSegment[] SwipeUpSegments = new IRelativeGestureSegment[2];
-            SwipeUpSegments[0] = new SwipeUpSegment1();
-            SwipeUpSegments[1] = new SwipeUpSegment2();
-            return SwipeUpSegments;
+            IRelativeGestureSegment[] SwipeDownLeftHandSegments = new IRelativeGestureSegment[2];
+            SwipeDownLeftHandSegments[0] = new SwipeDownLeftHandSegment1();
+            SwipeDownLeftHandSegments[1] = new SwipeDownLeftHandSegment2();
+            return SwipeDownLeftHandSegments;
         }
     }
 }
