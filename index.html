@@ -32,14 +32,14 @@
 				
 			};
 			var u = new UnityObject2(config);
-
+			
 			jQuery(function() {
 
 				var $missingScreen = jQuery("#unityPlayer").find(".missing");
 				var $brokenScreen = jQuery("#unityPlayer").find(".broken");
 				$missingScreen.hide();
 				$brokenScreen.hide();
-				
+
 				u.observeProgress(function (progress) {
 					switch(progress.pluginStatus) {
 						case "broken":
@@ -67,11 +67,39 @@
 						break;
 					}
 				});
-				u.initPlugin(jQuery("#unityPlayer")[0], "test1.unity3d");
+				u.initPlugin(jQuery("#unityPlayer")[0], "XBMC.unity3d");
 			});
 		-->
 		</script>
-		
+	<style type="text/css">
+		<!--
+		div.broken,
+		div.missing {
+			margin: auto;
+			position: relative;
+			top: 50%;
+			width: 193px;
+		}
+		div.broken a,
+		div.missing a {
+			height: 63px;
+			position: relative;
+			top: -31px;
+		}
+		div.broken img,
+		div.missing img {
+			border-width: 0px;
+		}
+		div.broken {
+			display: none;
+		}
+		div#unityPlayer {
+			cursor: default;
+			height: 400px;
+			width: 600px;
+		}
+		-->
+		</style>	
   </head>
   <body>
       <div id="header">
@@ -175,10 +203,17 @@ See the XBMC documentation to find all available KB commands.</p>
 <li><p>Open <code>GestureToCommand.xml</code> and add a new mapping from your gesture(use the id returned by the <code>ICompositeGesture</code>interface) to any XBMC command. The type of your gesture should be 'Physical'.</p></li>
 <li><p>That's it! the class you created will be dynamically loaded and the command applied according to the xml mapping.</p></li>
 </ol>
+<h3>
+<a name="debugging" class="anchor" href="#debugging"><span class="octicon octicon-link"></span></a>Debugging
+</h3>
+<p>To Bring up the debug screen, that will help you to develop new gestures by showing the skeleton:</p>
+<ul>
+<li>Start <code>KinectAdapter.exe</code> with the <code>/debug</code> command line argument.</li>
+</ul>
 
-      </section>
+</section>
 
-    </div>
+</div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
 </body>
