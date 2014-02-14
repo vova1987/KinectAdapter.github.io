@@ -84,6 +84,7 @@ namespace KinectAdapter
             IGestureDetector voiceDetector = new VoiceRecognition.KinectVoiceGestureDetector(_kinectSensor);
             INotifybleCommandSender commandSender = new XbmcCommandSender();
             commandSender.CommandSenderStatusChanged += commandSender_CommandSenderStatusChanged;
+            commandSender.SendNotification("Kinect Adapter Connected","");
             _adapter = new GestureToCommandAdapter(GestureFilePath, commandSender, gestureDetector, voiceDetector);
             //Gestures
             gestureDetector.GestureDetected += gestureDetector_GestureDetected;

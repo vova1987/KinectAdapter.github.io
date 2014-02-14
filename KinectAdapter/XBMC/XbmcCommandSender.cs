@@ -70,7 +70,7 @@ namespace KinectAdapter.XBMC
         /// <param name="ActionId"></param>
         void ICommandSender.SendCommand(XbmcCommand ActionId)
         {
-            if (!_eventClient.Connected && !Initialize(_host,_port))
+            if (!IsConnected())
             {
                 Debug.WriteLine("XBMC Disconnected. Command will not be sent!");
                 return;
@@ -96,12 +96,20 @@ namespace KinectAdapter.XBMC
         /// <param name="actionId"></param>
         void ICommandSender.SendNotification(string caption, string actionId)
         {
-            if (!_eventClient.Connected && !Initialize(_host, _port))
+            if (!IsConnected())
             {
                 Debug.WriteLine("XBMC Disconnected. Command will not be sent!");
                 return;
             }
             _eventClient.SendNotification(caption, actionId);
+        }
+        /// <summary>
+        /// Update connection status and notify by event
+        /// </summary>
+        private bool IsConnected()
+        {
+            bool connectd = Initialize(_host, _port);
+            return connectd;
         }
 
         public event EventHandler<CommandSenderEventArgs> CommandSenderStatusChanged;

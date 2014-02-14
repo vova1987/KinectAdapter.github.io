@@ -22,19 +22,13 @@
         "Entry"
         {
         "MsmKey" = "8:_5D8CB58AC501D45CCDEEF4073BC285A0"
-        "OwnerKey" = "8:_7C4A0E3812BE4829CF2E0B7CE1B0176E"
+        "OwnerKey" = "8:_D7C782B8328C649DB84F5CFB1B6DB9D3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_5D8CB58AC501D45CCDEEF4073BC285A0"
         "OwnerKey" = "8:_9B17C3D448864EFF8F37EB411D7B58C4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5D8CB58AC501D45CCDEEF4073BC285A0"
-        "OwnerKey" = "8:_E5F33499AEDB9AEF0F1205E458EE8C4F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -52,7 +46,13 @@
         "Entry"
         {
         "MsmKey" = "8:_5D8CB58AC501D45CCDEEF4073BC285A0"
-        "OwnerKey" = "8:_D7C782B8328C649DB84F5CFB1B6DB9D3"
+        "OwnerKey" = "8:_7C4A0E3812BE4829CF2E0B7CE1B0176E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5D8CB58AC501D45CCDEEF4073BC285A0"
+        "OwnerKey" = "8:_E5F33499AEDB9AEF0F1205E458EE8C4F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -76,7 +76,7 @@
         "Entry"
         {
         "MsmKey" = "8:_D7C782B8328C649DB84F5CFB1B6DB9D3"
-        "OwnerKey" = "8:_1BA586F657D14F84A153C308E72AE368"
+        "OwnerKey" = "8:_E5F33499AEDB9AEF0F1205E458EE8C4F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -88,13 +88,13 @@
         "Entry"
         {
         "MsmKey" = "8:_D7C782B8328C649DB84F5CFB1B6DB9D3"
-        "OwnerKey" = "8:_E5F33499AEDB9AEF0F1205E458EE8C4F"
+        "OwnerKey" = "8:_CD1AB1A33CD9BE5582A1672CDAB021EC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_D7C782B8328C649DB84F5CFB1B6DB9D3"
-        "OwnerKey" = "8:_CD1AB1A33CD9BE5582A1672CDAB021EC"
+        "OwnerKey" = "8:_1BA586F657D14F84A153C308E72AE368"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -106,7 +106,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E5F33499AEDB9AEF0F1205E458EE8C4F"
+        "OwnerKey" = "8:_1BA586F657D14F84A153C308E72AE368"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -118,25 +118,25 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1BA586F657D14F84A153C308E72AE368"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_CD1AB1A33CD9BE5582A1672CDAB021EC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D7C782B8328C649DB84F5CFB1B6DB9D3"
+        "OwnerKey" = "8:_7C4A0E3812BE4829CF2E0B7CE1B0176E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7C4A0E3812BE4829CF2E0B7CE1B0176E"
+        "OwnerKey" = "8:_E5F33499AEDB9AEF0F1205E458EE8C4F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D7C782B8328C649DB84F5CFB1B6DB9D3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -163,6 +163,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -179,6 +187,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -297,7 +326,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -420,7 +449,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:XBMC Kinect Adapter"
         "ProductCode" = "8:{7684D530-D784-44CC-BAB6-76EC38128DD4}"
-        "PackageCode" = "8:{F973E3CC-0846-4791-B3E6-7F0569BB9144}"
+        "PackageCode" = "8:{F162088A-89E3-4E6D-8308-BAA20CC4CE72}"
         "UpgradeCode" = "8:{FAD78EFF-B7F8-4CC3-BC59-FD8D31BE8A2A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -540,15 +569,15 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9F708D294BEE44E1845FB8FBEDA810A5"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_FF8018D0A88446B8B817A6B330F99076"
             {
-            "Name" = "8:KinectAdapter"
+            "Name" = "8:Kinect Adapter"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_306C94EDA68F419EB986D51BCC2C1D4B"
+            "Target" = "8:_1BA586F657D14F84A153C308E72AE368"
             "Folder" = "8:_60949D908A9648359011448B68968B23"
             "WorkingFolder" = "8:_306C94EDA68F419EB986D51BCC2C1D4B"
             "Icon" = "8:"

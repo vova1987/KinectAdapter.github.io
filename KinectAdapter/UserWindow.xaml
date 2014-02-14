@@ -16,8 +16,8 @@
         <Label Content="XBMC Status: " Height="30" HorizontalAlignment="Left" Margin="5,46,0,0" Name="label2" VerticalAlignment="Top" Grid.Row="1" FontSize="16" Width="108" />
         <TextBox IsReadOnly="True"  Grid.Row="1" Height="30" HorizontalAlignment="Stretch" Margin="119,10,10,0" Name="kinectStatusText" VerticalAlignment="Top" Text="Connecting..." FontSize="16" />
         <TextBox IsReadOnly="True" Grid.Row="1" Height="30" HorizontalAlignment="Stretch" Margin="119,46,10,0" Name="XbmcStatusText" VerticalAlignment="Top" Text="Connecting..." FontSize="16" />
-        <Label Content="User Status:" Grid.Row="1" Height="30" HorizontalAlignment="Left" Margin="5,82,0,0" Name="label3" VerticalAlignment="Top" Width="108" FontSize="16" />
-        <TextBox IsReadOnly="True" Grid.Row="1" Height="30" HorizontalAlignment="Stretch" Margin="119,82,10,0" Name="UserStatusText" VerticalAlignment="Top" Text="Connecting..." FontSize="16" />
+        <!--<Label Content="User Status:" Grid.Row="1" Height="30" HorizontalAlignment="Left" Margin="5,82,0,0" Name="label3" VerticalAlignment="Top" Width="108" FontSize="16" />-->
+        <!--<TextBox IsReadOnly="True" Grid.Row="1" Height="30" HorizontalAlignment="Stretch" Margin="119,82,10,0" Name="UserStatusText" VerticalAlignment="Top" Text="Connecting..." FontSize="16" />-->
         <DataGrid ItemsSource="{Binding GestureList}" FontSize="16"  AutoGenerateColumns="False" Grid.Row="2" Margin="10,5,10,5" Name="GestureTable" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"   >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Gesture" Binding="{Binding Path=Gesture.GestureId}" MinWidth="120" />
